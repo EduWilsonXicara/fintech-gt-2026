@@ -1,0 +1,110 @@
+---
+/**
+ * Layout.astro — Base layout para Landing e Docs
+ * NO se usa en presentation.astro (Reveal.js requiere su propio HTML root)
+ */
+interface Props {
+  title?:       string;
+  description?: string;
+  ogImage?:     string;
+}
+
+const {
+  title       = 'FinTech Guatemala 2026',
+  description = 'Investigación interactiva sobre el ecosistema FinTech en Guatemala — Microeconomía & Administración de Empresas',
+  ogImage     = '/og-image.png',
+} = Astro.props;
+
+const base    = import.meta.env.BASE_URL;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0F1E" />
+
+  <!-- SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content={canonical} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+
+  <!-- Fonts (preconnect para rendimiento) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="bg-fintech-dark text-slate-100 font-inter antialiased min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-fintech-dark/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href={base} class="flex items-center gap-3 group">
+        <div class="w-8 h-8 rounded-lg bg-fintech-blue flex items-center justify-center font-bold font-montserrat text-sm">
+          FT
+        </div>
+        <span class="font-montserrat font-semibold text-sm text-slate-200 group-hover:text-white transition-colors">
+          FinTech <span class="text-fintech-electric">GT</span> 2026
+        </span>
+      </a>
+
+      <!-- Nav links -->
+      <div class="flex items-center gap-1">
+        <a href={base}
+           class="px-4 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+          Inicio
+        </a>
+        <a href={`${base}presentation/`}
+           class="px-4 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+          Presentación
+        </a>
+        <a href={`${base}docs/`}
+           class="px-4 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+          Documentación
+        </a>
+        <a href={`${base}presentation/`}
+           class="ml-2 btn-primary text-sm px-4 py-2">
+          Ver Slides →
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <main class="pt-16">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-fintech-muted">
+        © 2026 — FinTech Guatemala · Investigación para curso de Microeconomía & Administración
+      </div>
+      <div class="flex items-center gap-4 text-xs text-fintech-muted">
+        <span>119 empresas activas</span>
+        <span class="w-1 h-1 rounded-full bg-fintech-muted"></span>
+        <span>$26.8B en remesas</span>
+        <span class="w-1 h-1 rounded-full bg-fintech-muted"></span>
+        <span>8 sectores</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

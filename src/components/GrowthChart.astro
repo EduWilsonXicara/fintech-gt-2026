@@ -1,0 +1,92 @@
+---
+/**
+ * GrowthChart.astro
+ * Línea de crecimiento de empresas FinTech en Guatemala 2021–2026 (Chart.js).
+ */
+interface Props {
+  height?: number;
+}
+const { height = 260 } = Astro.props;
+---
+
+<div class="growth-chart-wrapper" style="width:100%;">
+  <canvas id="growth-chart" height={height}></canvas>
+</div>
+
+<script is:inline>
+(function initGrowthChart() {
+  const canvas = document.getElementById('growth-chart');
+  if (!canvas) return;
+  if (!window.Chart) { setTimeout(initGrowthChart, 300); return; }
+  if (canvas._chartInstance) return;
+
+  const ctx = canvas.getContext('2d');
+
+  // Datos reales del source_content.md
+  const years  = ['2021', '2022', '2023', '2024', '2025', '2026'];
+  const values = [47, 66, 87, 96, 119, 119];   // empresas activas
+
+  const gradient = ctx.createLinearGradient(0, 0, 0, height || 260);
+  gradient.addColorStop(0, 'rgba(26, 86, 219, 0.5)');
+  gradient.addColorStop(1, 'rgba(26, 86, 219, 0.0)');
+
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [{
+        label: 'Empresas FinTech activas',
+        data: values,
+        borderColor: '#38BDF8',
+        backgroundColor: gradient,
+        borderWidth: 2.5,
+        pointBackgroundColor: '#38BDF8',
+        pointBorderColor: '#0A0F1E',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        fill: true,
+        tension: 0.35,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          grid:  { color: 'rgba(255,255,255,0.05)' },
+          ticks: { color: '#94a3b8', font: { family: 'Inter', size: 11 } },
+          border:{ color: 'rgba(255,255,255,0.1)' },
+        },
+        y: {
+          beginAtZero: false,
+          min: 40,
+          grid:  { color: 'rgba(255,255,255,0.05)' },
+          ticks: { color: '#94a3b8', font: { family: 'Inter', size: 11 }, stepSize: 20 },
+          border:{ color: 'rgba(255,255,255,0.1)' },
+        },
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0D1B4B',
+          borderColor: 'rgba(56,189,248,0.3)',
+          borderWidth: 1,
+          padding: 10,
+          callbacks: {
+            title: (items) => `Año ${items[0].label}`,
+            label: (item)  => `  ${item.parsed.y} empresas activas`,
+          },
+          titleFont: { family: 'Montserrat', weight: '700' },
+          bodyFont:  { family: 'Inter' },
+        },
+        // Anotaciones de crecimiento %
+        annotation: undefined,
+      },
+      animation: { duration: 1400, easing: 'easeInOutQuart' },
+    },
+  });
+
+  canvas._chartInstance = chart;
+})();
+</script>

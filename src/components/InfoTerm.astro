@@ -1,0 +1,324 @@
+---
+/**
+ * InfoTerm.astro
+ * Término interactivo con subrayado punteado.
+ * Al hacer clic abre un modal con definición técnica profunda.
+ * Compatible con Reveal.js (usa z-index superior al overlay de slides).
+ */
+interface Props {
+  term:      string;        // Texto visible en el slide
+  title?:    string;        // Título del modal (default = term)
+  content:   string;        // Explicación técnica (HTML permitido)
+  formula?:  string;        // Fórmula LaTeX o texto matemático (opcional)
+  examples?: string;        // Ejemplos en Guatemala (opcional)
+  tag?:      'economy' | 'legal' | 'tech' | 'finance'; // Color del badge
+}
+
+const {
+  term,
+  title    = term,
+  content,
+  formula  = '',
+  examples = '',
+  tag      = 'economy',
+} = Astro.props;
+
+const tagColors: Record<string, string> = {
+  economy: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+  legal:   'bg-purple-500/20 text-purple-300 border-purple-500/30',
+  tech:    'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+  finance: 'bg-green-500/20 text-green-300 border-green-500/30',
+};
+const tagLabels: Record<string, string> = {
+  economy: 'Economía',
+  legal:   'Legal',
+  tech:    'Tecnología',
+  finance: 'Finanzas',
+};
+---
+
+<span
+  class="info-term"
+  data-it-title={title}
+  data-it-content={content}
+  data-it-formula={formula}
+  data-it-examples={examples}
+  data-it-tag={tag}
+  data-it-tag-label={tagLabels[tag]}
+  data-it-tag-color={tagColors[tag]}
+  tabindex="0"
+  role="button"
+  aria-label={`Ver definición de ${term}`}
+  aria-haspopup="dialog"
+>
+  {term}
+</span>
+
+<!-- ─── Global styles para InfoTerm (solo se inyectan una vez) ──────── -->
+<style is:global>
+  .info-term {
+    border-bottom: 2px dotted #38bdf8;
+    color: #38bdf8;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    display: inline;
+    line-height: inherit;
+    white-space: nowrap;
+  }
+  .info-term:hover,
+  .info-term:focus {
+    color: #7dd3fc;
+    border-color: #7dd3fc;
+    outline: none;
+  }
+
+  /* ─── Modal overlay ─────────────────────────── */
+  #infoterm-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(10, 15, 30, 0.85);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  #infoterm-modal.is-open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  #infoterm-modal-card {
+    background: linear-gradient(135deg, #0d1b4b 0%, #0a0f1e 100%);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    max-width: 520px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 60px rgba(26, 86, 219, 0.35);
+    transform: scale(0.95) translateY(8px);
+    transition: transform 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    color: #e2e8f0;
+  }
+  #infoterm-modal.is-open #infoterm-modal-card {
+    transform: scale(1) translateY(0);
+  }
+
+  /* Header row */
+  #infoterm-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  #infoterm-modal-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f8fafc;
+    line-height: 1.3;
+  }
+  #infoterm-modal-close {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: background 0.15s, color 0.15s;
+  }
+  #infoterm-modal-close:hover {
+    background: rgba(239,68,68,0.15);
+    color: #ef4444;
+    border-color: rgba(239,68,68,0.3);
+  }
+
+  /* Tag badge */
+  #infoterm-modal-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Content */
+  #infoterm-modal-content {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+    margin-bottom: 0.5rem;
+  }
+  #infoterm-modal-content strong { color: #f8fafc; }
+  #infoterm-modal-content em     { color: #38bdf8; font-style: normal; }
+
+  /* Formula */
+  #infoterm-modal-formula-wrap {
+    margin-top: 1rem;
+    background: rgba(13, 27, 75, 0.5);
+    border: 1px solid rgba(56,189,248,0.2);
+    border-radius: 0.75rem;
+    padding: 0.9rem 1.2rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #38bdf8;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  /* Examples */
+  #infoterm-modal-examples-wrap {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  #infoterm-modal-examples-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #38bdf8;
+    margin-bottom: 0.4rem;
+  }
+  #infoterm-modal-examples-text {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+</style>
+
+<!-- ─── Inicialización del modal (singleton, se crea solo la primera vez) ── -->
+<script is:inline>
+(function () {
+  if (window.__infotermInit) return;
+  window.__infotermInit = true;
+
+  // ── Crear elemento modal en el DOM ────────────────────────
+  const overlay = document.createElement('div');
+  overlay.id = 'infoterm-modal';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-labelledby', 'infoterm-modal-title');
+  overlay.innerHTML = `
+    <div id="infoterm-modal-card">
+      <div id="infoterm-modal-header">
+        <h2 id="infoterm-modal-title"></h2>
+        <button id="infoterm-modal-close" aria-label="Cerrar">&times;</button>
+      </div>
+      <span id="infoterm-modal-tag"></span>
+      <div id="infoterm-modal-content"></div>
+      <div id="infoterm-modal-formula-wrap" style="display:none">
+        <div id="infoterm-modal-formula"></div>
+      </div>
+      <div id="infoterm-modal-examples-wrap" style="display:none">
+        <div id="infoterm-modal-examples-label">Contexto Guatemala</div>
+        <div id="infoterm-modal-examples-text"></div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  // ── Elementos del modal ───────────────────────────────────
+  const elTitle    = document.getElementById('infoterm-modal-title');
+  const elTag      = document.getElementById('infoterm-modal-tag');
+  const elContent  = document.getElementById('infoterm-modal-content');
+  const elFormWrap = document.getElementById('infoterm-modal-formula-wrap');
+  const elFormula  = document.getElementById('infoterm-modal-formula');
+  const elExWrap   = document.getElementById('infoterm-modal-examples-wrap');
+  const elExText   = document.getElementById('infoterm-modal-examples-text');
+  const elClose    = document.getElementById('infoterm-modal-close');
+
+  // ── Abrir modal ───────────────────────────────────────────
+  function openModal(el) {
+    elTitle.textContent   = el.dataset.itTitle || el.textContent;
+    elContent.innerHTML   = el.dataset.itContent || '';
+
+    const tag      = el.dataset.itTag      || 'economy';
+    const tagLabel = el.dataset.itTagLabel || 'Economía';
+    const tagColor = el.dataset.itTagColor || '';
+    elTag.textContent = tagLabel;
+    elTag.className   = '';
+    // Reset inline style, apply class tokens manually
+    elTag.style.cssText = '';
+    tagColor.split(' ').forEach(cls => {
+      // Tailwind classes won't apply here (not in Reveal context) — use inline styles
+    });
+    elTag.setAttribute('style',
+      tag === 'legal'   ? 'background:rgba(168,85,247,0.15);color:#c4b5fd;border-color:rgba(168,85,247,0.3)' :
+      tag === 'tech'    ? 'background:rgba(6,182,212,0.15);color:#67e8f9;border-color:rgba(6,182,212,0.3)' :
+      tag === 'finance' ? 'background:rgba(16,185,129,0.15);color:#6ee7b7;border-color:rgba(16,185,129,0.3)' :
+                          'background:rgba(56,189,248,0.15);color:#7dd3fc;border-color:rgba(56,189,248,0.3)'
+    );
+
+    const formula = el.dataset.itFormula || '';
+    if (formula) {
+      elFormula.textContent = formula;
+      elFormWrap.style.display = 'block';
+      // Try KaTeX if available
+      if (window.katex) {
+        try { elFormula.innerHTML = window.katex.renderToString(formula, { throwOnError: false }); }
+        catch(e) { elFormula.textContent = formula; }
+      }
+    } else {
+      elFormWrap.style.display = 'none';
+    }
+
+    const examples = el.dataset.itExamples || '';
+    if (examples) {
+      elExText.innerHTML       = examples;
+      elExWrap.style.display   = 'block';
+    } else {
+      elExWrap.style.display = 'none';
+    }
+
+    overlay.classList.add('is-open');
+    // Prevent Reveal.js keyboard nav while modal is open
+    if (window.Reveal) window.Reveal.configure({ keyboard: false });
+    setTimeout(() => elClose.focus(), 50);
+  }
+
+  // ── Cerrar modal ──────────────────────────────────────────
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    if (window.Reveal) window.Reveal.configure({ keyboard: true });
+  }
+
+  elClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+
+  // ── Delegación de eventos para .info-term ─────────────────
+  // Funciona con elementos existentes Y futuros (Reveal.js renderiza slides dinámicamente)
+  document.addEventListener('click', function (e) {
+    const el = e.target.closest('.info-term');
+    if (el) { e.preventDefault(); e.stopPropagation(); openModal(el); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('info-term')) {
+      e.preventDefault(); openModal(e.target);
+    }
+  });
+})();
+</script>

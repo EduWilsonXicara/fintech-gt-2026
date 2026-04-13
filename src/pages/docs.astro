@@ -1,0 +1,468 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="FinTech Guatemala 2026 — Documentación Completa"
+  description="Lectura profunda de la investigación sobre el ecosistema FinTech en Guatemala: fundamentos económicos, datos del mercado, marco legal y estrategia gerencial."
+>
+
+<div class="max-w-4xl mx-auto px-6 py-16">
+
+  <!-- Header -->
+  <div class="mb-12 pb-8 border-b border-white/10">
+    <p class="section-label mb-3">Investigación Completa</p>
+    <h1 class="font-montserrat font-extrabold text-4xl text-white mb-4">
+      FinTech <span class="text-fintech-electric">Guatemala</span> 2026
+    </h1>
+    <p class="text-fintech-muted leading-relaxed max-w-2xl">
+      Documento de investigación completo para el curso de Microeconomía & Administración de Empresas.
+      Cada sección corresponde a un bloque de la presentación interactiva.
+    </p>
+    <div class="flex flex-wrap gap-3 mt-6">
+      <span class="badge-blue">8 Secciones</span>
+      <span class="badge-blue">119 Empresas Activas</span>
+      <span class="badge-blue">Marco Legal 2026</span>
+      <a href="../presentation/" class="btn-primary text-sm px-4 py-2 ml-auto">
+        Ver Slides →
+      </a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SECCIÓN 1: FUNDAMENTOS GENERALES              -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="docs-prose mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-8 rounded-lg bg-fintech-blue flex items-center justify-center font-mono font-bold text-sm">01</div>
+      <h2 class="!mt-0 !mb-0 !border-0 !pb-0">Fundamentos Generales de las FinTech</h2>
+    </div>
+
+    <p>
+      Las Financial Technologies no son solo aplicaciones; son agentes que atacan las fricciones del mercado.
+      Digitalizan procesos para reducir costos de búsqueda, negociación y ejecución, así como el
+      <strong>costo marginal</strong> de cada transacción financiera.
+    </p>
+
+    <div class="formula-box my-6">
+      CMg = ΔCT / ΔQ
+      <div class="text-xs text-fintech-muted mt-2">Costo Marginal = Cambio en Costo Total / Cambio en Cantidad</div>
+    </div>
+
+    <p>
+      En la banca tradicional, el costo de atender a un nuevo cliente es alto debido a la necesidad de espacio físico,
+      cajeros, impresión de formularios y atención personalizada. En las FinTech, una vez desarrollada la plataforma
+      (costo fijo alto), agregar al cliente 1,001 cuesta lo mismo que el cliente 1,000, ya que el servidor está
+      encendido y el código escrito (<strong>costo marginal bajo → aproximándose a cero</strong>).
+    </p>
+
+    <h3>Mecanismos Clave</h3>
+    <ul>
+      <li>
+        <strong>Economías de Escala:</strong> mientras más usuarios usan la plataforma, más valiosa y eficiente
+        se vuelve para todos sin aumentar proporcionalmente los costos operativos.
+      </li>
+      <li>
+        <strong>Selección Adversa:</strong> en el mercado tradicional, la asimetría de información genera riesgos;
+        las FinTech utilizan <em>Alternative Scoring</em> para conocer mejor el riesgo del cliente y democratizar
+        el crédito.
+      </li>
+      <li>
+        <strong>Unbundling:</strong> mientras el banco tradicional ofrece servicios ineficientes en combo (menú
+        de precio fijo), las FinTech se especializan en un solo eslabón de la cadena de valor —pagos, seguros,
+        préstamos— para hacerlo más rápido y barato (menú a la carta).
+      </li>
+      <li>
+        <strong>Desintermediación:</strong> eliminan al intermediario para reducir el margen de intermediación,
+        trasladando el ahorro al consumidor final mediante menores comisiones.
+      </li>
+    </ul>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SECCIÓN 2: PANORAMA INTERNACIONAL             -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="docs-prose mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-8 rounded-lg bg-cyan-700 flex items-center justify-center font-mono font-bold text-sm">02</div>
+      <h2 class="!mt-0 !mb-0 !border-0 !pb-0">Panorama Internacional</h2>
+    </div>
+
+    <p>
+      El sector ha superado la etapa de nicho y se estima que alcance los <strong>$460.76 mil millones para 2026</strong>,
+      con una tasa de crecimiento anual superior al 18%.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4 my-6 not-prose">
+      {[
+        { flag:'🇬🇧', country:'Reino Unido', model:'Open Banking', desc:'Regulaciones obligan a los bancos a compartir datos de usuarios (bajo permiso) para mejorar servicios de terceros. Cuna de las APIs financieras abiertas.' },
+        { flag:'🇺🇸', country:'Estados Unidos', model:'Venture Capital', desc:'Impulsado por inversiones masivas en Silicon Valley enfocadas en crear monopolios tecnológicos a largo plazo. PayPal, Stripe, Chime.' },
+        { flag:'🇨🇳', country:'China', model:'QR Economy', desc:'Salto tecnológico del efectivo al pago con QR (WeChat, Alipay), omitiendo el uso de tarjetas físicas. 90% de pagos retail son digitales.' },
+        { flag:'🇧🇷', country:'Brasil', model:'NuBank Effect', desc:'NuBank demostró que una FinTech puede superar en valor a los bancos tradicionales eliminando la burocracia. Lección para LATAM.' },
+      ].map(c => (
+        <div class="card">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-2xl">{c.flag}</span>
+            <div>
+              <div class="font-montserrat font-bold text-sm text-white">{c.country}</div>
+              <div class="text-xs text-fintech-electric">{c.model}</div>
+            </div>
+          </div>
+          <p class="text-xs text-fintech-muted leading-relaxed m-0">{c.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <h3>Centroamérica</h3>
+    <p>Existe una alta dependencia de las remesas en la región:</p>
+    <ul>
+      <li><strong>El Salvador:</strong> Experimento mundial con el Bitcoin para la inclusión financiera.</li>
+      <li><strong>Costa Rica:</strong> Líder regional en digitalización de servicios gubernamentales.</li>
+      <li><strong>Triángulo Norte (GT, HN, SV):</strong> Enfoque en supervivencia y consumo; las FinTech
+        buscan velocidad en remesas y pago de servicios sin comisiones excesivas.</li>
+    </ul>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SECCIÓN 3: PRODUCTIVIDAD EMPRESARIAL          -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="docs-prose mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-8 rounded-lg bg-indigo-700 flex items-center justify-center font-mono font-bold text-sm">03</div>
+      <h2 class="!mt-0 !mb-0 !border-0 !pb-0">FinTech y Productividad Empresarial</h2>
+    </div>
+
+    <p>
+      La productividad es la relación entre producción e insumos; las FinTech optimizan el uso del tiempo y el capital.
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-6 not-prose">
+      {[
+        { v:'60%', label:'Ahorro en comisiones de mantenimiento y transferencias internacionales' },
+        { v:'30%', label:'Reducción en tiempo de cierre mensual con integración ERP' },
+        { v:'4×', label:'Más rápido en apertura de cuentas vs. banca tradicional' },
+        { v:'24h', label:'Procesamiento de transacciones vs. días en banca física' },
+      ].map(s => (
+        <div class="stat-card">
+          <div class="stat-value">{s.v}</div>
+          <div class="stat-label">{s.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <ul>
+      <li>Automatizan conciliaciones bancarias y pagos de nómina para reducir horas-hombre en tareas de bajo valor.</li>
+      <li>Reducen costos fijos y variables relacionados con la gestión del dinero al migrar de la banca tradicional.</li>
+      <li>Soluciones 100% digitales reportan ahorros del 60% en comisiones de mantenimiento y transferencias internacionales.</li>
+      <li>Reducción del 30% en el tiempo de cierre mensual mediante integración directa con sistemas ERP (ej. Bi Banking).</li>
+    </ul>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SECCIÓN 4: ACCESO A CAPITAL (SME)             -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="docs-prose mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-8 rounded-lg bg-purple-700 flex items-center justify-center font-mono font-bold text-sm">04</div>
+      <h2 class="!mt-0 !mb-0 !border-0 !pb-0">Acceso a Capital (SME Lending)</h2>
+    </div>
+
+    <p>
+      Antes de 2020, la banca tradicional destinaba el <strong>85% de sus créditos a grandes empresas</strong>;
+      tendencia que las FinTech han empezado a revertir hacia 2026.
+    </p>
+
+    <div class="not-prose my-6 overflow-x-auto">
+      <table class="fintech-table">
+        <thead>
+          <tr>
+            <th>Entidad</th>
+            <th>Tasa Anual (SME)</th>
+            <th>Requisitos Principales</th>
+            <th>Tiempo Entrega</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong class="text-white">Banca Tradicional</strong></td>
+            <td class="text-fintech-warning">11% – 15%</td>
+            <td>Garantía hipotecaria, estados auditados, 2+ años op.</td>
+            <td class="text-fintech-danger">3 a 8 semanas</td>
+          </tr>
+          <tr>
+            <td><strong class="text-fintech-electric">FinTech / Neobancos</strong></td>
+            <td class="text-fintech-warning">18% – 24%</td>
+            <td>Flujo de caja digital, facturación electrónica, Alternative Scoring</td>
+            <td class="text-fintech-success">24 a 48 horas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>¿Por qué la tasa FinTech es más alta?</h3>
+    <ul>
+      <li><strong>Prima de riesgo:</strong> sin garantía hipotecaria, el riesgo no está colateralizado.</li>
+      <li><strong>Costo de oportunidad:</strong> capital propio del prestamista tiene un costo.</li>
+      <li>Los préstamos FinTech pueden incluir una prima de <strong>14–16 puntos básicos (bps)</strong> adicionales,
+        donde 1% = 100 bps.</li>
+      <li>El 35.5% de los clientes de FinTechs en Guatemala eran previamente <strong>no bancarizados</strong>.</li>
+    </ul>
+
+    <h3>Tasa de Conversión</h3>
+    <p>Las FinTech aumentan la <strong>Tasa de Conversión (TC)</strong> de ventas al eliminar fricción de pago:</p>
+    <div class="formula-box my-4">
+      TC = (Ventas Realizadas / Visitantes o Intenciones de Compra) × 100
+    </div>
+    <p>
+      Cada paso adicional en el proceso de pago es una oportunidad para que el cliente abandone la compra.
+      Las FinTech reducen los pasos al mínimo.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SECCIÓN 5: PANORAMA FINTECH GUATEMALA         -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="docs-prose mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-8 rounded-lg bg-blue-700 flex items-center justify-center font-mono font-bold text-sm">05</div>
+      <h2 class="!mt-0 !mb-0 !border-0 !pb-0">Panorama FinTech en Guatemala</h2>
+    </div>
+
+    <p>
+      El ecosistema guatemalteco se divide en <strong>8 grupos principales</strong> según la Asociación FinTech
+      de Guatemala (2025–2026):
+    </p>
+
+    <div class="not-prose my-6 overflow-x-auto">
+      <table class="fintech-table">
+        <thead>
+          <tr>
+            <th>Grupo</th>
+            <th>Representación</th>
+            <th>Ejemplos</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[
+            { g:'Pagos Digitales', p:'38.5%', e:'Fri, Paggo, QpayPro, Recurrente' },
+            { g:'Tech para Inst. Financieras', p:'15.9%', e:'Bowpi, Mambu, Sifco' },
+            { g:'Crédito Digital', p:'15.9%', e:'Abaco, Tala, Vana, KrediYA' },
+            { g:'Gestión de Finanzas', p:'9.2%', e:'Finny, Tributax, Owwny' },
+            { g:'Criptoactivos', p:'6.7%', e:'Inbestgo, Binance, Coincaex, Lulubit' },
+            { g:'Insurtech', p:'5.0%', e:'Sostengo, Osigu, Quilo' },
+            { g:'Neobanca', p:'3.3%', e:'Nexa, Nequi, Zigi, Multimoney' },
+            { g:'Activos Fin. y Mercados', p:'1.7%', e:'Guatexchange, Treten' },
+          ].map(r => (
+            <tr>
+              <td><strong class="text-white">{r.g}</strong></td>
+              <td><span class="text-fintech-electric font-semibold">{r.p}</span></td>
+              <td class="text-fintech-muted text-sm">{r.e}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Datos Relevantes (Corte 2026)</h3>
+    <ul>
+      <li>La cantidad de empresas se <strong>duplicó entre 2021 y 2026</strong> (47 → 119).</li>
+      <li><strong>Crecimiento anual:</strong> 2022 (+40.4%), 2023 (+31.8%), 2024 (+10.3%), 2025 (+23.9%), 2026 (Estabilización).</li>
+      <li>Se estima que para 2027 el e-commerce alcance los <strong>$5,300 millones</strong> (+26% anual).</li>
+      <li>El <strong>80%</strong> de las transacciones digitales se realizan vía móvil.</li>
+      <li>Solo el 50% de adultos compra en línea → <em>oportunidad latente</em> del 50% restante.</li>
+      <li>El 35.5% de clientes FinTech son no bancarizados → inclusión financiera real.</li>
+      <li><strong>Hito regulatorio:</strong> Estrategia Nacional de Inclusión Financiera (ENIF 2024–2027).</li>
+    </ul>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SECCIÓN 6: DINÁMICAS DE MERCADO Y REMESAS     -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="docs-prose mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-8 rounded-lg bg-emerald-700 flex items-center justify-center font-mono font-bold text-sm">06</div>
+      <h2 class="!mt-0 !mb-0 !border-0 !pb-0">Dinámicas de Mercado y Remesas</h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-6 not-prose">
+      {[
+        { v:'18.4M', label:'Población Guatemala 2026' },
+        { v:'65%', label:'Usuarios de internet' },
+        { v:'82%', label:'Menores de 44 años' },
+        { v:'68.4%', label:'Adultos con acceso financiero' },
+      ].map(s => (
+        <div class="stat-card">
+          <div class="stat-value">{s.v}</div>
+          <div class="stat-label">{s.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <h3>Remesas: Motor Económico</h3>
+    <p>
+      Proyección de <strong>$26,800 millones</strong> en remesas para 2026, equivalente al
+      <strong>24.3% del PIB nacional</strong> ($110 mil millones).
+    </p>
+    <ul>
+      <li>Las remesas cubren más del 80% del gasto en <strong>3 de cada 10 hogares</strong> guatemaltecos.</li>
+      <li>Desde el 01/01/2026 rige un impuesto del <strong>1%</strong> a remesas en efectivo en EE.UU.
+        (<em>One Big Beautiful Bill Act</em>, Sección 70604).</li>
+      <li>Las <strong>transferencias digitales están exentas</strong>, otorgando a las FinTech una ventaja competitiva.</li>
+      <li>Ahorrar Q38 en comisión (digital vs. efectivo) aumenta la <em>Propensión Marginal al Consumo</em>:
+        ese dinero se inyecta a la economía local.</li>
+    </ul>
+
+    <h3>Casos Destacados en Guatemala</h3>
+    <div class="not-prose my-4 overflow-x-auto">
+      <table class="fintech-table">
+        <thead><tr><th>Empresa</th><th>Hito Relevante</th></tr></thead>
+        <tbody>
+          <tr><td><strong class="text-white">Fri</strong></td><td class="text-fintech-muted">Eliminó costo de envío entre usuarios. Monetiza con comercios.</td></tr>
+          <tr><td><strong class="text-white">Neo</strong></td><td class="text-fintech-muted">Captación de jóvenes que rechazan la burocracia física.</td></tr>
+          <tr><td><strong class="text-white">Pagadito</strong></td><td class="text-fintech-muted">Expansión regional para PYMES cobrando en monedas locales o dólares.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Leapfrogging</h3>
+    <p>
+      Los guatemaltecos pasan del <strong>efectivo al celular directamente</strong>, saltándose la era del plástico.
+      El 30% de personas con celular aún no tiene cuenta bancaria tradicional, pero puede adoptar
+      billeteras digitales directamente. La digitalización mejora la precisión del cálculo del PIB
+      al generar datos medibles para el Banguat y la SAT.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SECCIÓN 7: MARCO LEGAL                        -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="docs-prose mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-8 rounded-lg bg-purple-800 flex items-center justify-center font-mono font-bold text-sm">07</div>
+      <h2 class="!mt-0 !mb-0 !border-0 !pb-0">Marco Legal y Regulatorio</h2>
+    </div>
+
+    <p>
+      Guatemala sigue un modelo de <strong>regulación funcional</strong> bajo el Derecho Mercantil
+      y normativas financieras específicas. Se regula por <em>función económica</em>, no por etiqueta tecnológica.
+    </p>
+
+    <h3>Leyes Fundamentales</h3>
+    <ul>
+      <li>
+        <strong>Ley de Bancos (Decreto 19-2002):</strong> Define la intermediación financiera (captar para prestar).
+        Capital mínimo: Q175 millones. Si se presta capital propio, no se requiere licencia bancaria.
+      </li>
+      <li>
+        <strong>Ley de Libre Negociación de Divisas (Decreto 94-2000):</strong> Piedra angular que permite
+        el flujo de dólares sin restricciones severas. Base para operaciones en USD (remesas, cripto).
+      </li>
+      <li>
+        <strong>Ley Contra el Lavado de Dinero (Decreto 67-2001):</strong> Obliga a procesos
+        <em>KYC (Know Your Customer)</em> digitales. Fallos algorítmicos implican responsabilidades penales.
+      </li>
+      <li>
+        <strong>Ley de Competencia (Decreto 7-2026):</strong> Obliga a los bancos a abrir sus redes a las FinTech
+        (interoperabilidad obligatoria). Cambia radicalmente el panorama competitivo.
+      </li>
+    </ul>
+
+    <h3>Mecanismos Regulatorios</h3>
+    <ul>
+      <li>
+        <strong>Sandbox Regulatorio:</strong> Permite operar con usuarios reales bajo supervisión sin el capital
+        inicial de Q175M para demostrar seguridad. Facilitador de innovación.
+      </li>
+      <li>
+        <strong>Arbitraje Regulatorio:</strong> Diseñar el modelo bajo licencia comercial (SA) para evitar la
+        regulación bancaria pesada, mientras no se detecte intermediación no autorizada.
+      </li>
+    </ul>
+
+    <h3>Resolución JM-91-2024</h3>
+    <p>
+      Fecha límite <strong>16/02/2026</strong> para actualizar protocolos de ciberseguridad y biometría.
+      Incluye verificación biométrica de identidad, monitoreo de transacciones AML en tiempo real,
+      reportes periódicos a la SIB y auditorías anuales de seguridad informática.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SECCIÓN 8: ESTRATEGIA DE ADOPCIÓN             -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="docs-prose mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-8 h-8 rounded-lg bg-emerald-800 flex items-center justify-center font-mono font-bold text-sm">08</div>
+      <h2 class="!mt-0 !mb-0 !border-0 !pb-0">Implementación y Estrategia de Adopción</h2>
+    </div>
+
+    <p>
+      En Administración, la tecnología se adopta para resolver problemas de eficiencia o abrir mercados,
+      <strong>no por novedad</strong>.
+    </p>
+
+    <h3>Los 3 Pilares de Adopción</h3>
+
+    <div class="not-prose grid md:grid-cols-3 gap-4 my-6">
+      {[
+        {
+          n:'01', title:'ROI Financiero', color:'text-fintech-electric',
+          formula:'ROI = (B.Neto − C.Inv) / C.Inv × 100',
+          items:['Ahorro en comisiones bancarias','Liberación de capital de trabajo','Visibilidad financiera en tiempo real'],
+        },
+        {
+          n:'02', title:'Escalabilidad', color:'text-fintech-success',
+          formula:null,
+          items:['100 → 10,000 transacciones sin contratar personal','Integración API con SAP/ERP','Facturación FEL automática ante SAT'],
+        },
+        {
+          n:'03', title:'Customer Experience', color:'text-purple-400',
+          formula:null,
+          items:['Reducir tiempos de espera y fricción','Aumentar la utilidad marginal del cliente','Mayor fidelidad y menor churn'],
+        },
+      ].map(p => (
+        <div class="card">
+          <div class={`font-mono font-bold text-xs mb-2 ${p.color}`}>{p.n}</div>
+          <h4 class={`font-montserrat font-bold text-sm mb-3 ${p.color}`}>{p.title}</h4>
+          {p.formula && <div class="formula-box text-xs mb-3">{p.formula}</div>}
+          <ul class="space-y-1">
+            {p.items.map(i => (
+              <li class="text-xs text-fintech-muted flex gap-2"><span class="text-fintech-electric flex-shrink-0">▸</span>{i}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <h3>¿Cuándo NO implementar FinTech?</h3>
+    <ul>
+      <li>
+        <strong>Baja Transaccionalidad:</strong> Si hay pocas ventas de montos altos, la comisión porcentual
+        puede ser más cara que una transferencia tradicional. El ROI no justifica el cambio.
+      </li>
+      <li>
+        <strong>Brecha Digital:</strong> Si el mercado objetivo no tiene smartphones o señal estable.
+        La adopción forzada de un canal digital genera fricción, no la elimina.
+      </li>
+      <li>
+        <strong>Riesgo Operativo:</strong> FinTechs extranjeras sin representación local para temas de SAT
+        o liquidación en Quetzales pueden generar problemas legales.
+      </li>
+      <li>
+        <strong>Proceso Ineficiente:</strong> "Automatizar un proceso ineficiente solo genera ineficiencias
+        más rápidas." La tecnología no cura una mala administración.
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── CTA footer ── -->
+  <div class="border-t border-white/10 pt-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="text-sm text-fintech-muted">
+      © 2026 — FinTech Guatemala · Investigación Académica
+    </div>
+    <a href="../presentation/" class="btn-primary text-sm px-6 py-3">
+      Ver Presentación Completa →
+    </a>
+  </div>
+
+</div>
+</Layout>

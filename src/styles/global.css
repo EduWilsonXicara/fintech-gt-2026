@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Google Fonts ──────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ─── Base Reset ────────────────────────────────────────────── */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-fintech-dark text-slate-100 font-inter antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat;
+  }
+  code, pre {
+    @apply font-mono;
+  }
+}
+
+/* ─── Utility Components ────────────────────────────────────── */
+@layer components {
+
+  /* Cards */
+  .card {
+    @apply bg-card-gradient border border-white/10 rounded-2xl p-6 shadow-card backdrop-blur-sm;
+  }
+  .card-hover {
+    @apply card transition-all duration-300 hover:border-fintech-electric/40 hover:shadow-electric hover:-translate-y-1;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase;
+  }
+  .badge-blue     { @apply badge bg-fintech-blue/20 text-fintech-electric border border-fintech-blue/30; }
+  .badge-success  { @apply badge bg-fintech-success/20 text-fintech-success border border-fintech-success/30; }
+  .badge-warning  { @apply badge bg-fintech-warning/20 text-fintech-warning border border-fintech-warning/30; }
+  .badge-danger   { @apply badge bg-fintech-danger/20 text-fintech-danger border border-fintech-danger/30; }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold font-montserrat
+           bg-fintech-blue hover:bg-blue-500 text-white transition-all duration-200
+           shadow-glow hover:shadow-electric active:scale-95;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold font-montserrat
+           bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 hover:border-fintech-electric/40
+           transition-all duration-200 active:scale-95;
+  }
+
+  /* Section headers */
+  .section-label {
+    @apply text-xs font-semibold tracking-[0.2em] uppercase text-fintech-electric mb-2;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-fintech-electric to-fintech-blue bg-clip-text text-transparent;
+  }
+
+  /* Stats */
+  .stat-card {
+    @apply flex flex-col items-center justify-center text-center p-4 rounded-xl
+           bg-white/5 border border-white/10;
+  }
+  .stat-value {
+    @apply text-3xl font-bold font-montserrat text-fintech-electric;
+  }
+  .stat-label {
+    @apply text-xs text-fintech-muted mt-1 tracking-wide;
+  }
+
+  /* Table */
+  .fintech-table {
+    @apply w-full text-sm border-collapse;
+  }
+  .fintech-table th {
+    @apply bg-fintech-navy/60 text-fintech-electric font-semibold font-montserrat
+           px-4 py-3 text-left border-b border-white/10 text-xs tracking-wider uppercase;
+  }
+  .fintech-table td {
+    @apply px-4 py-3 border-b border-white/5 text-slate-300;
+  }
+  .fintech-table tr:hover td {
+    @apply bg-white/5;
+  }
+
+  /* Formula box */
+  .formula-box {
+    @apply bg-fintech-navy/40 border border-fintech-electric/20 rounded-xl px-6 py-4
+           font-mono text-fintech-electric text-center text-lg;
+  }
+
+  /* Prose for docs */
+  .docs-prose h1 { @apply text-3xl font-bold font-montserrat text-white mb-6 mt-10; }
+  .docs-prose h2 { @apply text-xl font-bold font-montserrat text-fintech-electric mb-4 mt-8 pb-2 border-b border-white/10; }
+  .docs-prose h3 { @apply text-lg font-semibold font-montserrat text-slate-200 mb-3 mt-6; }
+  .docs-prose p  { @apply text-slate-300 leading-relaxed mb-4; }
+  .docs-prose ul { @apply list-disc list-outside ml-5 space-y-2 mb-4 text-slate-300; }
+  .docs-prose li { @apply leading-relaxed; }
+  .docs-prose strong { @apply text-white font-semibold; }
+  .docs-prose em { @apply text-fintech-electric not-italic; }
+  .docs-prose code { @apply bg-white/10 px-1.5 py-0.5 rounded text-fintech-electric text-sm; }
+}

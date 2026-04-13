@@ -1,0 +1,218 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout
+  title="FinTech Guatemala 2026 — Revolución Financiera"
+  description="Investigación interactiva sobre el ecosistema FinTech en Guatemala: 119 empresas, 8 sectores, $26.8B en remesas."
+>
+
+  <!-- ══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-hero-gradient">
+
+    <!-- Grid decorativo de fondo -->
+    <div class="absolute inset-0 opacity-[0.04]"
+         style="background-image: linear-gradient(rgba(56,189,248,1) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,1) 1px, transparent 1px); background-size: 60px 60px;">
+    </div>
+
+    <!-- Glow orbs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-fintech-blue/15 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-fintech-electric/10 blur-3xl pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+
+      <!-- Course badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-fintech-electric/30 bg-fintech-blue/10 text-fintech-electric text-xs font-semibold tracking-widest uppercase mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-fintech-electric animate-pulse"></span>
+        Microeconomía & Administración de Empresas · 2026
+      </div>
+
+      <!-- Título principal -->
+      <h1 class="font-montserrat font-extrabold text-6xl md:text-7xl lg:text-8xl leading-none tracking-tight mb-6">
+        Fin<span class="text-fintech-electric">Tech</span><br/>
+        <span class="text-4xl md:text-5xl font-light text-slate-400">Guatemala</span>
+        <span class="block text-fintech-blue text-5xl md:text-6xl">2026</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+        Del banco físico al ecosistema digital — Cómo las
+        <strong class="text-white">Financial Technologies</strong> están redefiniendo
+        la inclusión financiera, las remesas y la competitividad empresarial en Guatemala.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a href={`${base}presentation/`} class="btn-primary text-base px-8 py-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Ver Presentación (22 slides)
+        </a>
+        <a href={`${base}docs/`} class="btn-secondary text-base px-8 py-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
+          Lectura Profunda
+        </a>
+      </div>
+
+      <!-- Key Stats Row -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+        {[
+          { value: '119',    unit: 'empresas',    label: 'Activas en 2026' },
+          { value: '$26.8B', unit: 'USD',          label: 'Remesas al año' },
+          { value: '8',      unit: 'sectores',     label: 'Ecosistema FinTech' },
+          { value: '24.3%',  unit: 'del PIB',      label: 'Peso de remesas' },
+        ].map(s => (
+          <div class="stat-card group hover:border-fintech-electric/30 transition-all">
+            <div class="text-2xl font-bold font-montserrat text-fintech-electric group-hover:text-fintech-cyan transition-colors">
+              {s.value}
+            </div>
+            <div class="text-xs text-white/60 mt-0.5">{s.unit}</div>
+            <div class="text-xs text-fintech-muted mt-1">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       BLOQUES TEMÁTICOS
+  ═══════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-6 py-24">
+    <div class="text-center mb-16">
+      <p class="section-label">Estructura de la investigación</p>
+      <h2 class="font-montserrat font-bold text-3xl text-white">5 Bloques Temáticos</h2>
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-4">
+      {[
+        {
+          num: '01', color: 'from-blue-600 to-blue-800',
+          title: 'Teoría General',
+          desc: 'CMg → 0, Economías de Escala, Unbundling, Desintermediación',
+          slides: 'Slides 1–6',
+        },
+        {
+          num: '02', color: 'from-cyan-600 to-cyan-800',
+          title: 'Contexto Internacional',
+          desc: 'UK Open Banking, USA VC, China QR, Brasil NuBank, Centroamérica',
+          slides: 'Slides 7–9',
+        },
+        {
+          num: '03', color: 'from-indigo-600 to-indigo-800',
+          title: 'Guatemala Deep Dive',
+          desc: '119 empresas, 8 sectores, remesas, One Big Beautiful Bill Act',
+          slides: 'Slides 10–16',
+        },
+        {
+          num: '04', color: 'from-purple-600 to-purple-800',
+          title: 'Marco Legal',
+          desc: 'Decreto 7-2026, Sandbox, JM-91-2024, KYC, Arbitraje Regulatorio',
+          slides: 'Slides 17–19',
+        },
+        {
+          num: '05', color: 'from-emerald-600 to-emerald-800',
+          title: 'Estrategia Gerencial',
+          desc: 'ROI, Escalabilidad, CX, APIs, Cuándo NO implementar',
+          slides: 'Slides 20–22',
+        },
+      ].map(b => (
+        <div class="card-hover flex flex-col gap-3">
+          <div class={`w-10 h-10 rounded-xl bg-gradient-to-br ${b.color} flex items-center justify-center font-mono font-bold text-sm text-white`}>
+            {b.num}
+          </div>
+          <h3 class="font-montserrat font-semibold text-white text-sm">{b.title}</h3>
+          <p class="text-xs text-fintech-muted leading-relaxed flex-1">{b.desc}</p>
+          <span class="badge-blue self-start text-xs">{b.slides}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       KEY INSIGHTS
+  ═══════════════════════════════════════════════ -->
+  <section class="bg-fintech-navy/30 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-20">
+      <div class="text-center mb-12">
+        <p class="section-label">Datos clave del ecosistema</p>
+        <h2 class="font-montserrat font-bold text-3xl text-white">Guatemala FinTech en Cifras</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          {
+            icon: '📈',
+            title: 'Crecimiento Explosivo',
+            stat: '+153%',
+            sub: 'de empresas en 5 años (47→119)',
+            detail: 'Crecimiento anual promedio del 25% entre 2022 y 2026',
+          },
+          {
+            icon: '💸',
+            title: 'Remesas Digitales',
+            stat: '1% tax',
+            sub: 'exento para transferencias digitales',
+            detail: 'One Big Beautiful Bill Act: ventaja competitiva FinTech vs. efectivo',
+          },
+          {
+            icon: '🏦',
+            title: 'Inclusión Financiera',
+            stat: '35.5%',
+            sub: 'de clientes FinTech eran no bancarizados',
+            detail: 'Alternative Scoring democratiza el acceso al crédito sin historial',
+          },
+          {
+            icon: '📱',
+            title: 'Mobile First',
+            stat: '80%',
+            sub: 'de transacciones digitales vía móvil',
+            detail: 'Leapfrogging: del efectivo al celular, saltándose las tarjetas físicas',
+          },
+          {
+            icon: '⚡',
+            title: 'Velocidad de Crédito',
+            stat: '24–48h',
+            sub: 'entrega de préstamos FinTech vs. 3–8 semanas banca',
+            detail: 'Alternative Scoring + IA reemplaza el proceso burocrático tradicional',
+          },
+          {
+            icon: '⚖️',
+            title: 'Marco Regulatorio',
+            stat: '2026',
+            sub: 'Decreto 7-2026 obliga interoperabilidad',
+            detail: 'Los bancos deben abrir sus redes a las FinTech por ley',
+          },
+        ].map(i => (
+          <div class="card group hover:border-fintech-electric/30 transition-all duration-300">
+            <div class="text-3xl mb-3">{i.icon}</div>
+            <h3 class="font-montserrat font-semibold text-white mb-1">{i.title}</h3>
+            <div class="text-2xl font-bold text-fintech-electric font-montserrat mb-1">{i.stat}</div>
+            <div class="text-sm text-slate-400 mb-3">{i.sub}</div>
+            <p class="text-xs text-fintech-muted leading-relaxed">{i.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CTA FINAL
+  ═══════════════════════════════════════════════ -->
+  <section class="max-w-4xl mx-auto px-6 py-24 text-center">
+    <h2 class="font-montserrat font-bold text-4xl text-white mb-4">
+      ¿Listo para la <span class="gradient-text">presentación</span>?
+    </h2>
+    <p class="text-slate-400 mb-8 text-lg">
+      22 slides interactivos con términos clicables, gráficas animadas y datos actualizados a 2026.
+    </p>
+    <a href={`${base}presentation/`} class="btn-primary text-lg px-10 py-4">
+      Iniciar Presentación →
+    </a>
+  </section>
+
+</Layout>
