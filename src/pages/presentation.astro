@@ -4,7 +4,9 @@
  * 22 slides con Reveal.js · Tema FinTech Guatemala 2026
  * InfoTerm: haz clic en los términos subrayados para ver definiciones técnicas
  */
-const base = import.meta.env.BASE_URL;
+// Normalizar base URL — Astro v4 puede no incluir trailing slash
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -19,8 +21,9 @@ const base = import.meta.env.BASE_URL;
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- Reveal.js CDN -->
+  <!-- Reveal.js CDN: base + tema black (dark background base) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" />
 
   <!-- KaTeX CDN para fórmulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
@@ -31,51 +34,111 @@ const base = import.meta.env.BASE_URL;
 
   <!-- ─── TEMA FINTECH PERSONALIZADO ─────────────────────────── -->
   <style>
+    /* ══════════════════════════════════════════════════════════════
+       OVERRIDE del tema black.css — Paleta FinTech Guatemala 2026
+       Las variables --r-* sobreescriben las del tema black.css
+       IMPORTANTE: este <style> carga DESPUÉS del CDN → mayor especificidad
+    ══════════════════════════════════════════════════════════════ */
+
+    /* ── Variables del tema FinTech (sobreescriben black.css) ── */
     :root {
-      --r-background-color:     #0A0F1E;
-      --r-main-font:            'Inter', sans-serif;
-      --r-main-font-size:       36px;
-      --r-main-color:           #e2e8f0;
-      --r-heading-font:         'Montserrat', sans-serif;
-      --r-heading-color:        #f8fafc;
-      --r-heading-font-weight:  700;
-      --r-heading-text-shadow:  none;
-      --r-heading-letter-spacing: -0.02em;
-      --r-heading1-size:        2.2em;
-      --r-heading2-size:        1.5em;
-      --r-heading3-size:        1.1em;
-      --r-link-color:           #38bdf8;
-      --r-link-color-hover:     #7dd3fc;
-      --r-selection-background-color: rgba(56,189,248,0.3);
-      --r-selection-color:      #fff;
-      --r-controls-color:       rgba(56,189,248,0.6);
-      --r-progress-color:       #1A56DB;
+      --r-background-color:            #0A0F1E;
+      --r-main-font:                   'Inter', sans-serif;
+      --r-main-font-size:              36px;
+      --r-main-color:                  #e2e8f0;
+      --r-heading-font:                'Montserrat', sans-serif;
+      --r-heading-color:               #f8fafc;
+      --r-heading-font-weight:         700;
+      --r-heading-text-shadow:         none;
+      --r-heading-letter-spacing:      -0.02em;
+      --r-heading-text-transform:      none;
+      --r-heading1-size:               2.2em;
+      --r-heading2-size:               1.5em;
+      --r-heading3-size:               1.0em;
+      --r-link-color:                  #38bdf8;
+      --r-link-color-hover:            #7dd3fc;
+      --r-selection-background-color:  rgba(56,189,248,0.3);
+      --r-selection-color:             #fff;
+      --r-controls-color:              rgba(56,189,248,0.7);
+      --r-controls-back-arrow-opacity: 0.5;
+      --r-progress-color:              #1A56DB;
     }
 
-    /* ── Global layout ── */
+    /* ── CRÍTICO: Reset total para que Reveal.js calcule viewport correctamente ── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #0A0F1E !important;
+    }
+
+    /* ── Forzar color de fondo en el viewport Reveal ── */
+    .reveal-viewport {
+      background-color: #0A0F1E !important;
+    }
+
+    /*
+     * position: fixed + 100vw/100vh = inatacable.
+     * El toolbar de Astro dev, el #back-home y cualquier otro elemento
+     * del DOM NO afectan el tamaño que Reveal.js detecta para calcular
+     * el factor de escala de los slides.
+     */
+    .reveal {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background-color: #0A0F1E;
+      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── Secciones: layout + scroll vertical habilitado ── */
+    /*
+     * overflow-y: auto  → permite scroll dentro del slide si el contenido excede el alto.
+     * mouseWheel: false en Reveal.js → la rueda del ratón hace scroll dentro del slide
+     *             en lugar de avanzar al siguiente slide.
+     * Navegación entre slides: teclas ← → o botones de control en pantalla.
+     */
     .reveal .slides section {
       display: flex !important;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: flex-start;
-      height: 100%;
-      padding: 48px 64px;
+      padding: 36px 52px;           /* Reducido de 48/64 → más espacio vertical */
       box-sizing: border-box;
       text-align: left;
+      background-color: transparent !important;
+      overflow-x: hidden;
+      overflow-y: auto;             /* ← Scroll vertical habilitado */
+      max-height: 100%;
+      /* Scrollbar estilizado — paleta FinTech */
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56,189,248,0.45) rgba(255,255,255,0.04);
     }
+    .reveal .slides section::-webkit-scrollbar       { width: 4px; }
+    .reveal .slides section::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); border-radius: 2px; }
+    .reveal .slides section::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.45); border-radius: 2px; }
+    .reveal .slides section::-webkit-scrollbar-thumb:hover { background: rgba(56,189,248,0.75); }
+
     .reveal .slides section.center-all {
       align-items: center;
       text-align: center;
     }
 
-    /* ── Typography ── */
-    .reveal h1 { font-size: 2.4em; line-height: 1.1; letter-spacing: -0.03em; }
-    .reveal h2 { font-size: 1.6em; line-height: 1.2; }
-    .reveal h3 { font-size: 1.0em; color: #94a3b8; font-weight: 500; }
-    .reveal p  { font-size: 0.8em; line-height: 1.7; color: #cbd5e1; }
-    .reveal ul { list-style: none; padding: 0; margin: 0; }
+    /* ── Typography (calibrado para 1280×720 con scroll) ── */
+    .reveal h1 { font-size: 2.2em; line-height: 1.1; letter-spacing: -0.03em; margin: 0 0 8px; }
+    .reveal h2 { font-size: 1.45em; line-height: 1.2; margin: 0 0 6px; }
+    .reveal h3 { font-size: 0.88em; color: #94a3b8; font-weight: 500; margin: 0 0 4px; }
+    .reveal p  { font-size: 0.75em; line-height: 1.65; color: #cbd5e1; margin: 0 0 10px; }
+    .reveal ul { list-style: none; padding: 0; margin: 0 0 8px; }
     .reveal ul li {
-      font-size: 0.75em; color: #cbd5e1; padding: 6px 0 6px 20px; position: relative; line-height: 1.5;
+      font-size: 0.72em; color: #cbd5e1; padding: 4px 0 4px 18px; position: relative; line-height: 1.5;
     }
     .reveal ul li::before {
       content: '▸'; color: #38bdf8; position: absolute; left: 0; font-size: 0.9em;
@@ -93,21 +156,21 @@ const base = import.meta.env.BASE_URL;
     /* ── Slide label (bloque) ── */
     .slide-label {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.45em;
+      font-size: 0.42em;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #38bdf8;
-      margin-bottom: 12px;
+      margin-bottom: 6px;      /* reducido de 12px */
       display: block;
     }
 
     /* ── Decorative accent bar ── */
     .accent-bar {
-      width: 48px; height: 4px;
+      width: 40px; height: 3px;
       background: linear-gradient(90deg, #1A56DB, #38bdf8);
       border-radius: 2px;
-      margin-bottom: 20px;
+      margin-bottom: 14px;      /* reducido de 20px */
     }
 
     /* ── Slide: Grid backgrounds ── */
@@ -132,14 +195,14 @@ const base = import.meta.env.BASE_URL;
     .s-card {
       background: linear-gradient(135deg, rgba(26,86,219,0.12), rgba(56,189,248,0.05));
       border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 20px 24px;
+      border-radius: 14px;
+      padding: 14px 18px;     /* reducido de 20/24 */
     }
     .s-card-sm {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 12px;
-      padding: 14px 18px;
+      border-radius: 10px;
+      padding: 10px 14px;     /* reducido de 14/18 */
     }
     .s-card:hover, .s-card-sm:hover {
       border-color: rgba(56,189,248,0.3);
@@ -177,20 +240,20 @@ const base = import.meta.env.BASE_URL;
     }
 
     /* ── Two-column grid ── */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; }
-    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; width: 100%; }
-    .four-col { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; width: 100%; }
+    .two-col   { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; width: 100%; }
+    .four-col  { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; width: 100%; }
 
     /* ── Table inside slides ── */
-    .s-table { width: 100%; border-collapse: collapse; font-size: 0.65em; }
+    .s-table { width: 100%; border-collapse: collapse; font-size: 0.63em; }
     .s-table th {
       background: rgba(13,27,75,0.7);
       color: #38bdf8; font-family: 'Montserrat',sans-serif;
-      font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-      padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+      padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left;
     }
     .s-table td {
-      padding: 9px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #cbd5e1;
+      padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #cbd5e1;
     }
     .s-table tr:hover td { background: rgba(255,255,255,0.03); }
 
@@ -277,10 +340,10 @@ const base = import.meta.env.BASE_URL;
   </style>
 </head>
 
-<body style="background:#0A0F1E; margin:0; overflow:hidden;">
+<body>
 
   <!-- Back home link -->
-  <a id="back-home" href={base}>← Inicio</a>
+  <a id="back-home" href={`${base}/`}>← Inicio</a>
 
   <!-- ══════════════════════════════════════════════
        REVEAL.JS WRAPPER
@@ -1239,45 +1302,70 @@ const base = import.meta.env.BASE_URL;
        SCRIPTS
   ═══════════════════════════════════════════════ -->
 
-  <!-- Reveal.js Core -->
+  <!-- Reveal.js Core (síncrono: debe estar definido antes del inline script) -->
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
-
-  <!-- InfoTerm component script (inline, el componente lo inyecta) -->
 
   <script is:inline>
     // ── Inicializar Reveal.js ────────────────────────────────────
-    Reveal.initialize({
-      hash:             true,
-      slideNumber:      'c/t',
-      controls:         true,
-      progress:         true,
-      center:           false,
-      transition:       'fade',
-      transitionSpeed:  'fast',
-      backgroundTransition: 'fade',
-      autoAnimateDuration:  0.6,
-      keyboard:         true,
-      touch:            true,
-      width:            1280,
-      height:           720,
-      margin:           0.04,
-      minScale:         0.2,
-      maxScale:         2.0,
-      plugins:          [],
-    });
+    // Todo el código que usa `Reveal` DEBE estar dentro de este listener.
+    // El CDN carga síncronamente, pero `window.load` garantiza que el
+    // script CDN ya terminó de ejecutarse antes de llamar a Reveal.initialize().
+    window.addEventListener('load', function () {
 
-    // ── Inicializar Charts después de que Reveal esté listo ──────
-    Reveal.addEventListener('ready', function () {
-      initGrowthChart();
-      initSectorChart();
-    });
+      if (typeof Reveal === 'undefined') {
+        console.error('[FinTech] Reveal.js no se cargó desde CDN.');
+        // Fallback: mostrar slides apilados verticalmente
+        var el = document.querySelector('.reveal');
+        if (el) { el.style.visibility = 'visible'; el.style.overflow = 'auto'; }
+        return;
+      }
 
-    // Reinicializar charts cuando se navega a slides con ellos
-    Reveal.addEventListener('slidechanged', function (event) {
-      const slideIndex = event.indexh;
-      // Slide 10 (index 9) = Growth chart, Slide 11 (index 10) = Sector chart
-      if (slideIndex === 9)  initGrowthChart();
-      if (slideIndex === 10) initSectorChart();
+      try {
+        Reveal.initialize({
+          hash:                 true,
+          slideNumber:          'c/t',
+          controls:             true,
+          controlsTutorial:     false,
+          progress:             true,
+          center:               true,
+          transition:           'fade',
+          transitionSpeed:      'fast',
+          backgroundTransition: 'fade',
+          autoAnimateDuration:  0.5,
+          keyboard:             true,
+          touch:                false,
+          // ── mouseWheel: false ────────────────────────────────────
+          // La rueda del ratón hace scroll dentro del slide (overflow-y:auto).
+          // Para avanzar entre slides: teclas ← → o los botones de control.
+          mouseWheel:           false,
+          // ── Dimensiones PC 16:9 ──────────────────────────────────
+          width:                1280,
+          height:               720,
+          margin:               0.06,
+          minScale:             0.4,
+          maxScale:             1.0,
+          disableLayout:        false,
+          plugins:              [],
+        });
+
+        // ── Listeners de Reveal — DENTRO del load callback ────────
+        // (Reveal aún no existe fuera de aquí al momento de parsear el script)
+
+        Reveal.addEventListener('ready', function () {
+          initGrowthChart();
+          initSectorChart();
+        });
+
+        // Reinicializar charts al navegar a las slides que los contienen
+        Reveal.addEventListener('slidechanged', function (event) {
+          var idx = event.indexh;
+          if (idx === 9)  initGrowthChart();   // Slide 10: Growth chart
+          if (idx === 10) initSectorChart();    // Slide 11: Sector donut
+        });
+
+      } catch (err) {
+        console.error('[FinTech] Error al inicializar Reveal.js:', err);
+      }
     });
 
     // ── Chart: Growth ────────────────────────────────────────────

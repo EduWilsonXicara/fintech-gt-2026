@@ -14,5 +14,7 @@ export default defineConfig({
   build: {
     assets: 'assets',
   },
+  // Deshabilitar toolbar de dev — interfiere con el cálculo de viewport de Reveal.js
+  devToolbar: { enabled: false },
   integrations: [tailwind()],
 });
