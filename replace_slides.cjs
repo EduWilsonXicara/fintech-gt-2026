@@ -1,0 +1,878 @@
+const fs = require('fs');
+const filepath = 'C:/Users/vn51yl5/Documents/PROJECTS/TICKET-DIGITAL/BACKEND/FinTech/presentation/src/pages/presentation.astro';
+const content = fs.readFileSync(filepath, 'utf-8');
+
+const startMarker = '  <div class="slides">';
+const endMarker = '  </div><!-- /slides -->';
+
+const startIdx = content.indexOf(startMarker);
+const endIdx = content.indexOf(endMarker);
+
+if (startIdx === -1 || endIdx === -1) {
+  console.error('Markers not found!', { startIdx, endIdx });
+  process.exit(1);
+}
+
+const before = content.slice(0, startIdx);
+const after = content.slice(endIdx + endMarker.length);
+
+const newSlides = `  <div class="slides">
+
+
+    <!-- S01 · PORTADA -->
+    <section class="center-all bg-grid" id="slide-portada">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;">
+        <div class="tag-line"><span class="tag-dot"></span>Universidad · 2026</div>
+        <h1 style="font-size:2.8em;letter-spacing:-0.04em;line-height:1;text-align:center;margin:0;">
+          Fin<span class="electric">Tech</span>
+          <span style="display:block;font-size:0.45em;font-weight:300;color:#94a3b8;margin-top:4px;">Guatemala 2026</span>
+        </h1>
+        <p style="text-align:center;max-width:560px;font-size:0.7em;color:#94a3b8;line-height:1.5;margin:0;">
+          Análisis del Ecosistema de Tecnologías Financieras desde la perspectiva de la Microeconomía
+        </p>
+        <div class="two-col" style="max-width:500px;margin-top:8px;gap:10px;">
+          <div class="s-card-sm" style="text-align:left;">
+            <div style="font-size:0.48em;color:#38bdf8;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Estudiante</div>
+            <div style="font-size:0.65em;color:#f8fafc;font-weight:600;">John Doe</div>
+          </div>
+          <div class="s-card-sm" style="text-align:left;">
+            <div style="font-size:0.48em;color:#38bdf8;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Catedrático</div>
+            <div style="font-size:0.65em;color:#f8fafc;font-weight:600;">Peter Parker</div>
+          </div>
+          <div class="s-card-sm" style="text-align:left;">
+            <div style="font-size:0.48em;color:#38bdf8;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Curso</div>
+            <div style="font-size:0.65em;color:#f8fafc;font-weight:600;">Microeconomía</div>
+          </div>
+          <div class="s-card-sm" style="text-align:left;">
+            <div style="font-size:0.48em;color:#38bdf8;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Carrera</div>
+            <div style="font-size:0.65em;color:#f8fafc;font-weight:600;">Administración de Empresas</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S02 · DEFINICIÓN Y AGENTES DE FRICCIÓN -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 01 — Fundamentos</span>
+      <h2>¿Qué son las <span class="electric">FinTech</span>?</h2>
+      <div class="accent-bar"></div>
+      <p style="max-width:700px;">
+        Son agentes que atacan las
+        <span class="info-term"
+          data-it-title="Fricciones del Mercado"
+          data-it-content="Son los costos implícitos que hacen que las transacciones económicas sean más lentas, costosas o imposibles. En finanzas, estas fricciones incluyen:<br/><br/><strong>• Costo de búsqueda:</strong> tiempo y dinero para encontrar al proveedor o producto financiero adecuado.<br/><strong>• Costo de negociación:</strong> el proceso de acordar términos (tasas, plazos, garantías).<br/><strong>• Costo de ejecución:</strong> el proceso físico o burocrático de completar la transacción (formularios, ventanillas, firmas).<br/><br/>Las FinTech digitalizan estos tres costos, reduciéndolos drásticamente o eliminándolos."
+          data-it-tag="economy" data-it-tag-label="Economía" data-it-tag-color="">fricciones del mercado</span>
+        digitalizando procesos financieros para hacerlos más rápidos, baratos y accesibles.
+      </p>
+      <ul>
+        <li>Reducen <strong style="color:#f8fafc;">costos de búsqueda, negociación y ejecución</strong></li>
+        <li>Digitalizan procesos para eliminar burocracia y papeleo físico</li>
+        <li>Atacan ineficiencias que la banca tradicional dejó sin resolver por décadas</li>
+        <li>No son solo apps: son <strong style="color:#38bdf8;">infraestructura financiera alternativa</strong></li>
+      </ul>
+      <div class="s-card" style="margin-top:14px;max-width:600px;">
+        <div style="font-size:0.6em;color:#94a3b8;line-height:1.6;">
+          <strong style="color:#38bdf8;">Ejemplo:</strong> Abrir una cuenta bancaria tradicional en Guatemala puede tomar 1-2 semanas entre documentos, visitas y aprobaciones. Un neobancos como <em>Zigi</em> o <em>Nexa</em> lo hace en minutos desde el celular.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S03 · COSTO MARGINAL -->
+    <section class="bg-glow-blue">
+      <span class="slide-label">Bloque 01 — Fundamentos</span>
+      <h2><span class="info-term"
+          data-it-title="Costo Marginal (CMg)"
+          data-it-content="El <strong>Costo Marginal</strong> es el cambio en el Costo Total (CT) al producir una unidad adicional de output (Q).<br/><br/>En economía de producción, indica cuánto cuesta incrementar la producción en exactamente una unidad más.<br/><br/><strong>En banca tradicional:</strong> atender a un nuevo cliente requiere cajero, espacio físico, formularios, atención personalizada → CMg alto (~Q85 por cliente).<br/><br/><strong>En FinTech:</strong> el servidor ya está encendido, el código ya está escrito. El cliente 1,001 cuesta lo mismo que el cliente 1,000 → CMg ≈ $0.<br/><br/>Este principio es la base del modelo de negocio FinTech: inversión fija alta en tecnología, pero escalado masivo a costo marginal casi nulo."
+          data-it-formula="CMg = \\frac{\\Delta CT}{\\Delta Q}"
+          data-it-examples="<strong>Banca física (GT):</strong> costo operativo por nueva cuenta ~Q85. <strong>Neobancos (Zigi/Nexa):</strong> costo marginal por nueva cuenta ~Q0.30."
+          data-it-tag="economy" data-it-tag-label="Economía" data-it-tag-color="">Costo Marginal</span>
+        <span class="electric"> → 0</span></h2>
+      <div class="accent-bar"></div>
+      <div class="two-col" style="align-items:start;gap:20px;">
+        <div>
+          <div class="formula-box" style="margin-bottom:16px;">CMg = ΔCT / ΔQ</div>
+          <ul>
+            <li><strong style="color:#ef4444;">Banca física:</strong> cada cliente nuevo = cajero + espacio + papelería</li>
+            <li><strong style="color:#10b981;">FinTech:</strong> servidor encendido + código escrito = <strong style="color:#38bdf8;">CMg ≈ $0</strong></li>
+            <li>Plataforma desarrollada una vez → sirve a millones sin costo incremental</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="s-card" style="text-align:center;border-color:rgba(239,68,68,0.3);">
+            <div style="font-size:0.52em;color:#94a3b8;margin-bottom:4px;">Banca Tradicional</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:1.3em;font-weight:800;color:#ef4444;">Alto</div>
+            <div style="font-size:0.5em;color:#94a3b8;">Costo Marginal por cliente</div>
+          </div>
+          <div style="text-align:center;font-size:1.2em;">↓</div>
+          <div class="s-card" style="text-align:center;border-color:rgba(16,185,129,0.4);">
+            <div style="font-size:0.52em;color:#94a3b8;margin-bottom:4px;">FinTech / Neobancos</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:1.3em;font-weight:800;color:#10b981;">≈ $0</div>
+            <div style="font-size:0.5em;color:#94a3b8;">Costo Marginal por cliente</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S04 · ESCALABILIDAD MASIVA Y ECONOMÍAS DE ESCALA -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 01 — Fundamentos</span>
+      <h2><span class="electric">Escalabilidad</span> Masiva</h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div>
+          <p>Las <span class="info-term"
+              data-it-title="Economías de Escala"
+              data-it-content="Fenómeno donde el <strong>costo promedio por unidad disminuye</strong> a medida que aumenta el volumen de producción.<br/><br/>En FinTech: el costo de desarrollar la plataforma es fijo (alto), pero cada usuario adicional prácticamente no agrega costos. A mayor base de usuarios:<br/>• Mayor poder de negociación con proveedores<br/>• Infraestructura de datos más precisa (Alternative Scoring)<br/>• Red de pagos más valiosa para todos (Efecto de Red)<br/><br/><strong>Ejemplo numérico:</strong> Si desarrollar la app costó Q5M y tiene 1,000 usuarios → costo por usuario = Q5,000. Con 1,000,000 usuarios → costo por usuario = Q5. El CMg de cada usuario adicional es ≈ $0."
+              data-it-tag="economy" data-it-tag-label="Economía" data-it-tag-color="">Economías de Escala</span>
+            permiten que más usuarios = menor costo por transacción para todos.
+          </p>
+          <ul>
+            <li>Plataforma desarrollada 1 vez → sirve a 10M usuarios</li>
+            <li>Costo fijo se distribuye entre más usuarios → <strong style="color:#38bdf8;">costo unitario cae</strong></li>
+            <li>Los <span class="info-term"
+                data-it-title="Efectos de Red"
+                data-it-content="Un producto o servicio se vuelve <strong>más valioso a medida que más personas lo usan</strong>.<br/><br/>Ejemplo clásico: el teléfono. Con 2 teléfonos en el mundo hay 1 conexión posible. Con 10 teléfonos hay 45 conexiones posibles.<br/><br/>En FinTech: una billetera digital con 1,000 usuarios tiene valor limitado. Con 1,000,000 de usuarios, puede enviar dinero a casi cualquier persona en Guatemala → su utilidad se multiplica exponencialmente."
+                data-it-tag="economy" data-it-tag-label="Economía" data-it-tag-color="">efectos de red</span>
+              amplifican el valor de la plataforma
+            </li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;justify-content:center;">
+          <div class="s-card-sm" style="text-align:center;">
+            <div class="big-stat-sm">4×</div>
+            <div style="font-size:0.52em;color:#94a3b8;margin-top:4px;">más rápido en apertura de cuentas vs. banca</div>
+          </div>
+          <div class="s-card-sm" style="text-align:center;">
+            <div class="big-stat-sm">60%</div>
+            <div style="font-size:0.52em;color:#94a3b8;margin-top:4px;">ahorro en comisiones de mantenimiento</div>
+          </div>
+          <div class="s-card-sm" style="text-align:center;">
+            <div class="big-stat-sm">30%</div>
+            <div style="font-size:0.52em;color:#94a3b8;margin-top:4px;">reducción en tiempo de cierre mensual</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S05 · ASIMETRÍA DE INFORMACIÓN Y SELECCIÓN ADVERSA -->
+    <section class="bg-glow-blue">
+      <span class="slide-label">Bloque 01 — Fundamentos</span>
+      <h2><span class="info-term"
+          data-it-title="Asimetría de Información"
+          data-it-content="Situación donde una de las partes en una transacción tiene <strong>más o mejor información</strong> que la otra.<br/><br/>En el mercado de crédito:<br/>• El <strong>prestatario</strong> conoce su propia capacidad de pago y voluntad de cumplir.<br/>• El <strong>prestamista (banco)</strong> no puede observar directamente estas características.<br/><br/>Esta asimetría genera dos problemas clásicos:<br/>1. <strong>Selección Adversa</strong> (antes del préstamo): el banco no puede separar buenos de malos deudores → impone condiciones estrictas para todos.<br/>2. <strong>Riesgo Moral</strong> (después del préstamo): el deudor puede comportarse de forma más arriesgada una vez recibido el dinero."
+          data-it-tag="economy" data-it-tag-label="Economía" data-it-tag-color="">Asimetría de Información</span>
+        &amp; <span class="electric">Selección Adversa</span></h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div>
+          <h3 style="color:#ef4444;margin-bottom:8px;">El problema — Banca Tradicional</h3>
+          <ul>
+            <li>El banco no puede distinguir entre buenos y malos deudores</li>
+            <li>Impone condiciones estrictas para <strong style="color:#f8fafc;">todos</strong> (garantías, historial)</li>
+            <li>El 85% del crédito iba a grandes empresas (pre-2020)</li>
+            <li>Excluye a personas sin historial bancario formal</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color:#10b981;margin-bottom:8px;">La solución — FinTech</h3>
+          <ul>
+            <li><span class="info-term"
+                data-it-title="Selección Adversa"
+                data-it-content="Problema de mercado donde la <strong>asimetría de información</strong> hace que los participantes de menor calidad desplacen a los de mayor calidad.<br/><br/>En crédito clásico: los bancos, al no poder identificar buenos pagadores, aplican condiciones tan estrictas que excluyen a todos los que no tienen garantías (aunque sean solventes). Solo los desesperados (mayor riesgo) aceptan tasas muy altas.<br/><br/><strong>Las FinTech mitigan esto</strong> usando Alternative Scoring: en vez de historial bancario, usan datos alternativos para evaluar el riesgo real de cada persona."
+                data-it-tag="economy" data-it-tag-label="Economía" data-it-tag-color="">Selección Adversa</span>
+              → mitigada con datos alternativos
+            </li>
+            <li>Alternative Scoring evalúa riesgo real sin historial bancario</li>
+            <li>35.5% de clientes FinTech en GT eran no bancarizados</li>
+            <li>Democratiza el acceso al crédito</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S06 · UNBUNDLING: EL MENÚ A LA CARTA -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 01 — Fundamentos</span>
+      <h2><span class="info-term"
+          data-it-title="Unbundling (Desagregación)"
+          data-it-content="Estrategia donde una empresa <strong>separa servicios que antes venían empaquetados</strong> para ofrecer solo los que el cliente necesita.<br/><br/><strong>Banca tradicional (Bundle):</strong> cuenta corriente + chequera + tarjeta de débito + crédito + seguro de depósitos + inversiones → pago fijo mensual por todo el paquete, aunque uses solo 1 servicio.<br/><br/><strong>FinTech (Unbundling):</strong> cada empresa se especializa en UN eslabón de la cadena:<br/>• Pagos: Fri, Paggo<br/>• Crédito: Tala, KrediYA<br/>• Inversión: Guatexchange<br/>• Seguros: Sostengo, Osigu<br/><br/>Al especializarse, pueden hacer ese servicio <strong>10x mejor y más barato</strong> que el banco que lo ofrece como relleno de un paquete."
+          data-it-tag="economy" data-it-tag-label="Economía" data-it-tag-color="">Unbundling</span>:
+        El <span class="electric">Menú a la Carta</span></h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div class="s-card" style="border-color:rgba(239,68,68,0.3);">
+          <div style="font-size:0.6em;font-weight:700;color:#ef4444;font-family:'Montserrat',sans-serif;margin-bottom:8px;">🏦 Banca Tradicional — Menú Fijo</div>
+          <ul style="margin:0;">
+            <li style="font-size:0.6em;">Cuenta corriente + crédito + inversión + seguro</li>
+            <li style="font-size:0.6em;">Pagas por <strong style="color:#f8fafc;">todo el combo</strong> aunque uses solo 1 servicio</li>
+            <li style="font-size:0.6em;">Ningún servicio es excepcional porque ninguno es el foco</li>
+          </ul>
+        </div>
+        <div class="s-card" style="border-color:rgba(16,185,129,0.4);">
+          <div style="font-size:0.6em;font-weight:700;color:#10b981;font-family:'Montserrat',sans-serif;margin-bottom:8px;">📱 FinTech — Menú a la Carta</div>
+          <ul style="margin:0;">
+            <li style="font-size:0.6em;">Cada FinTech domina <strong style="color:#f8fafc;">un solo eslabón</strong> de la cadena</li>
+            <li style="font-size:0.6em;">Pagas solo por lo que usas</li>
+            <li style="font-size:0.6em;">El servicio es mejor, más rápido y más barato</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:14px;font-size:0.68em;color:#94a3b8;max-width:700px;">
+        <strong style="color:#38bdf8;">En Guatemala:</strong> Fri (pagos), Tala (crédito), Guatexchange (inversión), Sostengo (seguros) — cada una hace UNA cosa excepcionalmente bien.
+      </p>
+    </section>
+
+
+    <!-- S07 · DESINTERMEDIACIÓN -->
+    <section class="bg-glow-blue">
+      <span class="slide-label">Bloque 01 — Fundamentos</span>
+      <h2><span class="info-term"
+          data-it-title="Desintermediación Financiera"
+          data-it-content="Proceso de <strong>eliminar al intermediario</strong> (banco) que conecta a quienes tienen dinero con quienes lo necesitan.<br/><br/><strong>Modelo tradicional:</strong><br/>Depositante → Banco → Prestatario<br/>El banco capta depósitos al 3% y presta al 12% → margen de intermediación = 9%<br/><br/><strong>Modelo desintermediado (FinTech):</strong><br/>Inversionista → Plataforma P2P → Prestatario<br/>La plataforma cobra 2-3% de comisión → el ahorro se reparte entre ambas partes.<br/><br/><strong>Ejemplos:</strong> Préstamos P2P, crowdfunding, robo-advisors de inversión. En Guatemala: Vana, KrediYA, Abaco."
+          data-it-tag="economy" data-it-tag-label="Economía" data-it-tag-color="">Desintermediación</span>
+        &amp; Margen de <span class="electric">Ahorro</span></h2>
+      <div class="accent-bar"></div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;font-size:0.65em;flex-wrap:wrap;">
+        <div class="s-card-sm" style="text-align:center;">💰 Depositante / Inversionista</div>
+        <div style="color:#ef4444;text-decoration:line-through;">→ 🏦 Banco → (9% margen)</div>
+        <div style="color:#10b981;font-weight:700;font-size:1.1em;">→</div>
+        <div class="s-card-sm" style="text-align:center;border-color:rgba(16,185,129,0.4);">📱 FinTech (2-3%)</div>
+        <div style="color:#10b981;font-weight:700;font-size:1.1em;">→</div>
+        <div class="s-card-sm" style="text-align:center;">🏪 Prestatario / Empresa</div>
+      </div>
+      <ul>
+        <li>Elimina el <strong style="color:#f8fafc;">margen de intermediación</strong> bancario (típicamente 6-9 puntos)</li>
+        <li>El ahorro se traslada al consumidor: menores comisiones y tasas</li>
+        <li>Habilita modelos de crédito P2P, crowdfunding y microfinanzas</li>
+        <li>Requiere tecnología para gestionar riesgo sin el respaldo bancario</li>
+      </ul>
+      <div class="s-card" style="margin-top:12px;">
+        <div style="font-size:0.6em;color:#94a3b8;">
+          <strong style="color:#f59e0b;">⚠️ Nota:</strong> Las FinTech de crédito digital en Guatemala
+          (<em>Abaco, Tala, Vana, KrediYA</em>) prestan capital propio → no captan depósitos
+          del público → <strong style="color:#f8fafc;">no requieren licencia bancaria</strong>
+          bajo el Decreto 19-2002.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S08 · PANORAMA 1ER MUNDO: UK Y USA -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 02 — Contexto Internacional</span>
+      <h2>Primer Mundo: <span class="electric">UK &amp; USA</span></h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div class="s-card" style="border-color:rgba(56,189,248,0.3);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-size:1.6em;">🇬🇧</span>
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.65em;color:#f8fafc;">Reino Unido</div>
+              <div style="font-size:0.55em;color:#38bdf8;font-weight:600;">
+                <span class="info-term"
+                  data-it-title="Open Banking"
+                  data-it-content="Marco regulatorio que <strong>obliga a los bancos a compartir datos de sus clientes</strong> (con consentimiento) con terceros a través de APIs estandarizadas.<br/><br/><strong>Origen:</strong> UK Financial Conduct Authority (FCA) lo implementó en 2018.<br/><br/><strong>Cómo funciona:</strong><br/>1. Usuario autoriza a una FinTech a acceder a sus datos bancarios.<br/>2. La FinTech puede ver su historial, saldos y transacciones.<br/>3. Con esa información, ofrece mejores productos (crédito, inversión, comparadores).<br/><br/><strong>Impacto en Guatemala:</strong> El Decreto 7-2026 (Ley de Competencia) introduce un concepto similar, obligando a los bancos guatemaltecos a abrir sus redes a las FinTech."
+                  data-it-tag="legal" data-it-tag-label="Legal" data-it-tag-color="">Open Banking</span>
+              </div>
+            </div>
+          </div>
+          <ul style="margin:0;">
+            <li style="font-size:0.6em;">Bancos obligados por ley a compartir datos (con permiso del usuario)</li>
+            <li style="font-size:0.6em;">APIs financieras abiertas → ecosistema de servicios de terceros</li>
+            <li style="font-size:0.6em;">Cuna del concepto: luego replicado en Europa, Australia y LATAM</li>
+          </ul>
+        </div>
+        <div class="s-card" style="border-color:rgba(56,189,248,0.3);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-size:1.6em;">🇺🇸</span>
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.65em;color:#f8fafc;">Estados Unidos</div>
+              <div style="font-size:0.55em;color:#38bdf8;font-weight:600;">
+                <span class="info-term"
+                  data-it-title="Venture Capital (VC)"
+                  data-it-content="Forma de financiamiento donde <strong>fondos de inversión aportan capital a startups de alto crecimiento</strong> a cambio de participación accionaria.<br/><br/>En Silicon Valley, el modelo FinTech fue impulsado por VCs que buscaban escalar rápido y tomar posición dominante de mercado (monopolio tecnológico) antes de ser rentables.<br/><br/><strong>Ejemplos:</strong><br/>• PayPal (Sequoia Capital → IPO 2002)<br/>• Stripe ($95B valuation, nunca ha salido a bolsa)<br/>• Chime, SoFi, Robinhood<br/><br/><strong>Estrategia:</strong> Perder dinero inicialmente para adquirir usuarios masivos → una vez dominante el mercado, monetizar. CMg → 0 hace esto viable."
+                  data-it-tag="finance" data-it-tag-label="Finanzas" data-it-tag-color="">Venture Capital</span>
+              </div>
+            </div>
+          </div>
+          <ul style="margin:0;">
+            <li style="font-size:0.6em;">Inversiones masivas para escalar y crear monopolios tecnológicos</li>
+            <li style="font-size:0.6em;">PayPal, Stripe, Chime, SoFi como ejemplos paradigmáticos</li>
+            <li style="font-size:0.6em;">Mercado global de FinTech estimado en <strong style="color:#38bdf8;">$460.76B para 2026</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S09 · MERCADOS EMERGENTES: CHINA Y BRASIL -->
+    <section class="bg-glow-blue">
+      <span class="slide-label">Bloque 02 — Contexto Internacional</span>
+      <h2>Mercados Emergentes: <span class="electric">China &amp; Brasil</span></h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div class="s-card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-size:1.6em;">🇨🇳</span>
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.65em;color:#f8fafc;">China</div>
+              <div style="font-size:0.55em;color:#38bdf8;">Economía QR Code</div>
+            </div>
+          </div>
+          <ul style="margin:0;">
+            <li style="font-size:0.6em;">WeChat Pay y Alipay: 90%+ de pagos retail son digitales</li>
+            <li style="font-size:0.6em;"><span class="info-term"
+                data-it-title="Leapfrogging Tecnológico"
+                data-it-content="Fenómeno donde un país o región <strong>salta etapas tecnológicas intermedias</strong> para adoptar directamente la tecnología más avanzada.<br/><br/><strong>China:</strong> pasó del efectivo directamente al pago QR, omitiendo la era de tarjetas físicas y terminales POS.<br/><br/><strong>Guatemala (2026):</strong> población pasa del efectivo al celular directamente, saltándose las tarjetas de débito/crédito. El 80% de transacciones digitales ya son vía móvil, y el uso de billeteras crece 20% anual.<br/><br/>Esto ocurre porque la infraestructura de tarjetas nunca fue suficientemente desarrollada, pero los teléfonos inteligentes sí llegaron masivamente."
+                data-it-tag="tech" data-it-tag-label="Tecnología" data-it-tag-color="">Leapfrogging</span>: del efectivo al QR, saltando las tarjetas
+            </li>
+            <li style="font-size:0.6em;">Sin infraestructura POS → la falta se convirtió en oportunidad</li>
+          </ul>
+        </div>
+        <div class="s-card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-size:1.6em;">🇧🇷</span>
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.65em;color:#f8fafc;">Brasil</div>
+              <div style="font-size:0.55em;color:#38bdf8;">El Efecto NuBank</div>
+            </div>
+          </div>
+          <ul style="margin:0;">
+            <li style="font-size:0.6em;">NuBank alcanzó mayor capitalización que bancos centenarios de Brasil</li>
+            <li style="font-size:0.6em;">Eliminó burocracia: cuenta en 5 minutos, tarjeta sin cuota anual</li>
+            <li style="font-size:0.6em;">Demostró que el modelo FinTech <strong style="color:#38bdf8;">funciona en América Latina</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="s-card-sm" style="margin-top:12px;border-color:rgba(245,158,11,0.3);">
+        <div style="font-size:0.6em;color:#94a3b8;">
+          <strong style="color:#f59e0b;">Lección para Guatemala:</strong> El tamaño del mercado no es la barrera. La <em>voluntad de resolver una fricción real</em> es el punto de partida.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S10 · CENTROAMÉRICA: ENFOQUE EN SUPERVIVENCIA -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 02 — Contexto Internacional</span>
+      <h2>Centroamérica: <span class="electric">Supervivencia &amp; Remesas</span></h2>
+      <div class="accent-bar"></div>
+      <div class="three-col">
+        <div class="s-card">
+          <div style="font-size:1.3em;margin-bottom:6px;">🇸🇻</div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.6em;color:#f8fafc;margin-bottom:4px;">El Salvador</div>
+          <div class="s-badge s-badge-amber" style="margin-bottom:6px;">Bitcoin Legal</div>
+          <p style="font-size:0.55em;color:#94a3b8;margin:0;line-height:1.5;">Primer país con Bitcoin como moneda legal. Experimento de inclusión financiera para no bancarizados que reciben remesas.</p>
+        </div>
+        <div class="s-card">
+          <div style="font-size:1.3em;margin-bottom:6px;">🇨🇷</div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.6em;color:#f8fafc;margin-bottom:4px;">Costa Rica</div>
+          <div class="s-badge s-badge-green" style="margin-bottom:6px;">Líder Digital</div>
+          <p style="font-size:0.55em;color:#94a3b8;margin:0;line-height:1.5;">Infraestructura más madura de la región. Líder en digitalización de servicios gubernamentales.</p>
+        </div>
+        <div class="s-card" style="border-color:rgba(56,189,248,0.3);">
+          <div style="font-size:1.3em;margin-bottom:6px;">🇬🇹🇭🇳🇸🇻</div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.6em;color:#f8fafc;margin-bottom:4px;">Triángulo Norte</div>
+          <div class="s-badge s-badge-blue" style="margin-bottom:6px;">Velocidad &amp; Remesas</div>
+          <p style="font-size:0.55em;color:#94a3b8;margin:0;line-height:1.5;">Alta dependencia de remesas. Las FinTech buscan velocidad y cero comisiones excesivas.</p>
+        </div>
+      </div>
+      <div class="s-card-sm" style="margin-top:12px;">
+        <div style="font-size:0.6em;color:#94a3b8;">
+          Patrón regional: el foco no es la innovación por innovación, sino resolver urgencias reales —
+          <strong style="color:#f8fafc;">enviar dinero más rápido, más barato, desde el celular.</strong>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S11 · PRODUCTIVIDAD: AUTOMATIZACIÓN Y COSTOS -->
+    <section class="bg-glow-blue">
+      <span class="slide-label">Bloque 03 — FinTech y Productividad</span>
+      <h2>FinTech &amp; <span class="electric">Productividad Empresarial</span></h2>
+      <div class="accent-bar"></div>
+      <p style="margin-bottom:12px;">La productividad es la relación entre producción e insumos. Las FinTech optimizan el uso del <strong style="color:#f8fafc;">tiempo</strong> y el <strong style="color:#f8fafc;">capital</strong>.</p>
+      <div class="two-col">
+        <div>
+          <h3 style="color:#38bdf8;margin-bottom:8px;">Automatización de Procesos</h3>
+          <ul>
+            <li>Conciliaciones bancarias automáticas vs. conteo manual</li>
+            <li>Pago de nómina en segundos (integración ERP)</li>
+            <li>Facturación FEL ante SAT en tiempo real</li>
+            <li>Reducen horas-hombre en tareas de <strong style="color:#f8fafc;">bajo valor añadido</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color:#38bdf8;margin-bottom:8px;">Impacto en Costos</h3>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="progress-bar">
+              <div class="progress-bar-label">Ahorro comisiones</div>
+              <div class="progress-bar-track"><div class="progress-bar-fill" style="width:60%;"></div></div>
+              <div class="progress-bar-pct">60%</div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-bar-label">Reducción cierre mensual</div>
+              <div class="progress-bar-track"><div class="progress-bar-fill" style="width:30%;"></div></div>
+              <div class="progress-bar-pct">30%</div>
+            </div>
+          </div>
+          <p style="font-size:0.58em;color:#94a3b8;margin-top:10px;">Ejemplo local: Bi Banking integrado con ERP reduce el cierre mensual en un 30%.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S12 · EFICIENCIA: NEOBANCOS VS BANCA TRADICIONAL -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 03 — FinTech y Productividad</span>
+      <h2><span class="info-term"
+          data-it-title="Neobancos"
+          data-it-content="Entidades bancarias 100% digitales, sin sucursales físicas, que operan exclusivamente a través de aplicaciones móviles o web.<br/><br/><strong>Características clave:</strong><br/>• Sin costos de infraestructura física (alquiler, personal en ventanillas)<br/>• Procesos de onboarding 100% digital (KYC biométrico)<br/>• Actualizaciones inmediatas (sin ventanas de mantenimiento)<br/>• Transparencia total de comisiones en la app<br/><br/><strong>En Guatemala:</strong> Nexa, Nequi, Zigi, Multimoney. Captan principalmente a jóvenes (82% de la población tiene menos de 44 años) que rechazan la burocracia física.<br/><br/><strong>Diferencia con banco digital:</strong> Un banco digital es un banco tradicional con app. Un neobanco nació digital y no tiene estructura física."
+          data-it-tag="tech" data-it-tag-label="Tecnología" data-it-tag-color="">Neobancos</span>
+        <span class="electric">vs.</span> Banca Tradicional</h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div>
+          <table class="s-table">
+            <thead>
+              <tr><th>Indicador</th><th>Banca Trad.</th><th>Neobanco</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Apertura de cuenta</td><td style="color:#ef4444;">1-2 semanas</td><td style="color:#10b981;">5-10 min</td></tr>
+              <tr><td>Comisión mensual</td><td style="color:#ef4444;">Q40-Q120</td><td style="color:#10b981;">Q0-Q20</td></tr>
+              <tr><td>Transferencias 24/7</td><td style="color:#ef4444;">Parcial</td><td style="color:#10b981;">✓ Siempre</td></tr>
+              <tr><td>Servicio al cliente</td><td style="color:#ef4444;">Presencial</td><td style="color:#10b981;">Chat / App</td></tr>
+              <tr><td>Velocidad de transacción</td><td style="color:#ef4444;">Horas/días</td><td style="color:#10b981;">Segundos</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="s-card" style="display:flex;flex-direction:column;gap:10px;justify-content:center;">
+          <div style="font-size:0.6em;color:#94a3b8;margin-bottom:4px;">Neobancos en Guatemala:</div>
+          <div style="font-size:0.65em;color:#cbd5e1;line-height:1.8;">Nexa · Nequi · Zigi · Multimoney</div>
+          <div style="font-size:0.6em;color:#94a3b8;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;">
+            El 80% de transacciones digitales ya se realizan vía móvil en Guatemala (2026).
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S13 · ACCESO A CAPITAL: EL CAMBIO POST-PANDEMIA -->
+    <section class="bg-glow-blue">
+      <span class="slide-label">Bloque 04 — Acceso a Capital</span>
+      <h2>Acceso a Capital: <span class="electric">El Cambio Post-Pandemia</span></h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div>
+          <div class="s-card" style="border-color:rgba(239,68,68,0.3);margin-bottom:12px;">
+            <div style="font-size:0.55em;color:#94a3b8;margin-bottom:4px;">Pre-2020 — Banca Tradicional</div>
+            <div class="big-stat-sm" style="color:#ef4444;">85%</div>
+            <div style="font-size:0.52em;color:#94a3b8;">de los créditos iban a <strong style="color:#f8fafc;">grandes empresas</strong></div>
+          </div>
+          <ul>
+            <li>PYMES y personas naturales: excluidas por falta de garantías</li>
+            <li>Proceso: formularios + hipoteca + estados financieros auditados</li>
+            <li>Tiempo: 3 a 8 semanas de espera</li>
+          </ul>
+        </div>
+        <div>
+          <div class="s-card" style="border-color:rgba(16,185,129,0.4);margin-bottom:12px;">
+            <div style="font-size:0.55em;color:#94a3b8;margin-bottom:4px;">Post-Pandemia → 2026 — FinTech</div>
+            <div class="big-stat-sm" style="color:#10b981;">2014-2016</div>
+            <div style="font-size:0.52em;color:#94a3b8;">Desconfianza inicial → superada por <strong style="color:#f8fafc;">necesidad pandémica</strong></div>
+          </div>
+          <ul>
+            <li>Pandemia = alfabetización digital acelerada</li>
+            <li>Las PYMES necesitaban liquidez <em style="color:#38bdf8;">inmediatamente</em></li>
+            <li>FinTech respondió con crédito en 24-48 horas</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S14 · ALTERNATIVE SCORING -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 04 — Acceso a Capital</span>
+      <h2><span class="info-term"
+          data-it-title="Alternative Scoring"
+          data-it-content="Sistema de evaluación crediticia que usa <strong>datos no tradicionales</strong> para calificar el riesgo de un cliente sin necesitar historial bancario formal.<br/><br/><strong>Datos tradicionales (banca):</strong><br/>• Historial en buró de crédito<br/>• Garantías hipotecarias<br/>• Estados financieros auditados<br/>• 2+ años de operación empresarial<br/><br/><strong>Datos alternativos (FinTech):</strong><br/>• Comportamiento digital (apps usadas, horas de actividad)<br/>• Redes sociales y contactos<br/>• Flujo de caja en tiempo real (billeteras digitales)<br/>• Facturación electrónica FEL ante SAT<br/>• Historial de pago de servicios (luz, agua, internet)<br/><br/><strong>Resultado en Guatemala:</strong> El 35.5% de clientes de FinTechs eran previamente no bancarizados — personas con capacidad real de pago que la banca simplemente no podía evaluar."
+          data-it-examples="<strong>Abaco (GT):</strong> evalúa flujo de caja de vendedores de mercado a través de sus transacciones digitales. <strong>Tala (MX/GT):</strong> analiza patrones de uso del smartphone para predecir comportamiento de pago."
+          data-it-tag="tech" data-it-tag-label="Tecnología" data-it-tag-color="">Alternative Scoring</span>
+        &amp; No Bancarizados</h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div>
+          <p style="margin-bottom:10px;">Evalúa riesgo con datos no tradicionales para incluir a quienes la banca excluye.</p>
+          <h3 style="color:#38bdf8;margin-bottom:6px;">Fuentes de datos alternativos:</h3>
+          <ul>
+            <li>📱 Comportamiento digital y de apps</li>
+            <li>💰 Flujo de caja en tiempo real</li>
+            <li>🧾 Facturación electrónica FEL (SAT)</li>
+            <li>🔄 Historial de pago de servicios públicos</li>
+            <li>📊 Movimientos en billeteras digitales</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="s-card" style="text-align:center;border-color:rgba(56,189,248,0.4);">
+            <div class="big-stat-sm">35.5%</div>
+            <div style="font-size:0.52em;color:#94a3b8;">de clientes FinTech en GT eran previamente <strong style="color:#f8fafc;">no bancarizados</strong></div>
+          </div>
+          <div class="s-card-sm">
+            <div style="font-size:0.58em;color:#94a3b8;line-height:1.5;">
+              Prima de <strong style="color:#f8fafc;">14–16 bps</strong> adicionales sobre tasa base = precio del acceso sin garantía hipotecaria.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S15 · COMPARATIVA DE TASAS Y TIEMPOS (TABLA SME) -->
+    <section class="bg-glow-blue">
+      <span class="slide-label">Bloque 04 — Acceso a Capital</span>
+      <h2>Comparativa <span class="electric">SME Lending</span></h2>
+      <div class="accent-bar"></div>
+      <table class="s-table" style="margin-bottom:14px;">
+        <thead>
+          <tr>
+            <th>Entidad</th>
+            <th>Tasa Anual</th>
+            <th>Requisitos Principales</th>
+            <th>Tiempo Entrega</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#f8fafc;">Banca Tradicional</strong></td>
+            <td><span style="color:#f59e0b;">11% – 15%</span></td>
+            <td>Garantía hipotecaria · Estados auditados · 2+ años op.</td>
+            <td><span style="color:#ef4444;">3 a 8 semanas</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#38bdf8;">FinTech / Neobancos</strong></td>
+            <td><span style="color:#f59e0b;">18% – 24%</span></td>
+            <td>Flujo de caja digital · FEL (SAT) · Alternative Scoring</td>
+            <td><span style="color:#10b981;">24 a 48 horas</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="two-col">
+        <div class="s-card-sm">
+          <div style="font-size:0.58em;color:#38bdf8;font-weight:700;margin-bottom:4px;">¿Por qué la tasa FinTech es más alta?</div>
+          <ul style="margin:0;">
+            <li style="font-size:0.55em;">Sin garantía hipotecaria → mayor riesgo percibido</li>
+            <li style="font-size:0.55em;">Prima de 14–16 <span class="info-term"
+                data-it-title="Punto Básico (bps)"
+                data-it-content="Un <strong>punto básico (bps)</strong> es la centésima parte de un punto porcentual.<br/><br/><strong>1% = 100 bps</strong><br/><strong>0.01% = 1 bps</strong><br/><br/>Se usa para expresar cambios pequeños en tasas de interés con precisión sin ambigüedad.<br/><br/><strong>Ejemplo:</strong> Si una tasa sube de 12.00% a 12.14%, subió 14 bps. Decir '0.14 puntos porcentuales' es más largo y propenso a confusión en conversaciones financieras técnicas."
+                data-it-formula="1\\% = 100 \\text{ bps} \\quad 1 \\text{ bps} = 0.01\\%"
+                data-it-tag="finance" data-it-tag-label="Finanzas" data-it-tag-color="">bps</span> sobre tasa base</li>
+          </ul>
+        </div>
+        <div class="s-card-sm">
+          <div style="font-size:0.58em;color:#10b981;font-weight:700;margin-bottom:4px;">La ventaja real:</div>
+          <ul style="margin:0;">
+            <li style="font-size:0.55em;">Liquidez inmediata → <strong style="color:#f8fafc;">costo de oportunidad eliminado</strong></li>
+            <li style="font-size:0.55em;">En Guatemala: Abaco · Tala · Vana · KrediYA</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S16 · FRICCIÓN DE PAGO Y TASA DE CONVERSIÓN -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 04 — Acceso a Capital</span>
+      <h2>Fricción de Pago &amp; <span class="electric">Tasa de Conversión</span></h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div>
+          <p style="margin-bottom:12px;">
+            Cada paso adicional en el proceso de pago es una oportunidad para que el cliente abandone la compra.
+          </p>
+          <div class="formula-box" style="margin-bottom:12px;">TC = (Ventas / Visitantes) × 100</div>
+          <ul>
+            <li><span class="info-term"
+                data-it-title="Tasa de Conversión (TC)"
+                data-it-content="Porcentaje de visitantes o personas con intención de compra que efectivamente <strong>completan la transacción</strong>.<br/><br/><strong>Fórmula:</strong><br/>TC = (Ventas Realizadas / Visitantes o Intenciones de Compra) × 100<br/><br/><strong>Impacto de la fricción:</strong><br/>• E-commerce global promedio: TC ≈ 2-4%<br/>• Agregar un paso al checkout puede reducir la TC en 10-30%<br/>• Un formulario de pago con 10 campos tiene 70% más abandono que uno con 3 campos<br/><br/><strong>Las FinTech aumentan la TC</strong> eliminando pasos: un clic con billetera digital vs. 8 pasos con tarjeta de crédito + código SMS + verificación."
+                data-it-formula="TC = \\frac{\\text{Ventas Realizadas}}{\\text{Intenciones de Compra}} \\times 100"
+                data-it-examples="Una tienda online en Guatemala pasa de TC=1.8% a TC=3.2% al integrar Paggo o QpayPro como opción de pago → casi 80% más conversiones sin cambiar el producto."
+                data-it-tag="finance" data-it-tag-label="Finanzas" data-it-tag-color="">Tasa de Conversión</span>:
+              indicador clave del impacto de la fricción en ventas</li>
+            <li>Pago en 1 clic (billetera) vs. 8 pasos (tarjeta + código SMS)</li>
+            <li>La fricción eliminada = ingresos recuperados</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;justify-content:center;">
+          <div class="s-card" style="text-align:center;">
+            <div style="font-size:0.55em;color:#94a3b8;margin-bottom:4px;">Pasos en checkout tradicional</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:2em;font-weight:800;color:#ef4444;">8+</div>
+            <div style="font-size:0.5em;color:#94a3b8;">formularios · SMS · verificación · banco</div>
+          </div>
+          <div style="text-align:center;font-size:1.5em;">↓</div>
+          <div class="s-card" style="text-align:center;border-color:rgba(16,185,129,0.4);">
+            <div style="font-size:0.55em;color:#94a3b8;margin-bottom:4px;">Pago con billetera digital</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:2em;font-weight:800;color:#10b981;">1</div>
+            <div style="font-size:0.5em;color:#94a3b8;">toque → transacción completada</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S17 · ECOSISTEMA GUATEMALA: 8 SECTORES -->
+    <section>
+      <span class="slide-label">Bloque 05 — Guatemala Deep Dive</span>
+      <h2>Guatemala: <span class="electric">8 Sectores</span> FinTech</h2>
+      <div class="accent-bar"></div>
+      <div class="two-col" style="align-items:center;">
+        <div style="max-width:280px;margin:0 auto;">
+          <canvas id="sector-chart" width="280" height="280"></canvas>
+        </div>
+        <div class="sector-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#1A56DB;"></div><div><span style="font-weight:700;color:#1A56DB;">38.5%</span> <span style="color:#94a3b8;font-size:0.78em;">Pagos Digitales</span></div></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#0891B2;"></div><div><span style="font-weight:700;color:#0891B2;">15.9%</span> <span style="color:#94a3b8;font-size:0.78em;">Tech para Inst. Financieras</span></div></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#38BDF8;"></div><div><span style="font-weight:700;color:#38BDF8;">15.9%</span> <span style="color:#94a3b8;font-size:0.78em;">Crédito Digital</span></div></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#10B981;"></div><div><span style="font-weight:700;color:#10B981;">9.2%</span> <span style="color:#94a3b8;font-size:0.78em;">Gestión de Finanzas</span></div></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#F59E0B;"></div><div><span style="font-weight:700;color:#F59E0B;">6.7%</span> <span style="color:#94a3b8;font-size:0.78em;">Criptoactivos</span></div></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#8B5CF6;"></div><div><span style="font-weight:700;color:#8B5CF6;">5.0%</span> <span style="color:#94a3b8;font-size:0.78em;">Insurtech</span></div></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#EC4899;"></div><div><span style="font-weight:700;color:#EC4899;">3.3%</span> <span style="color:#94a3b8;font-size:0.78em;">Neobanca</span></div></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#6B7280;"></div><div><span style="font-weight:700;color:#6B7280;">1.7%</span> <span style="color:#94a3b8;font-size:0.78em;">Activos Fin. y Mercados</span></div></div>
+        </div>
+      </div>
+      <div class="s-card-sm" style="margin-top:10px;">
+        <div style="font-size:0.58em;color:#94a3b8;">
+          Fuente: Asociación FinTech de Guatemala · Corte 2025–2026 · Total: <strong style="color:#f8fafc;">119 empresas activas</strong>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S18 · ESTADÍSTICAS DE CRECIMIENTO 2021-2026 -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 05 — Guatemala Deep Dive</span>
+      <h2>Crecimiento: <span class="electric">47 → 119</span> Empresas</h2>
+      <div class="accent-bar"></div>
+      <div class="two-col" style="align-items:center;">
+        <div>
+          <ul style="margin-bottom:12px;">
+            <li><strong style="color:#f8fafc;">+153%</strong> de crecimiento en 5 años</li>
+            <li>2022: pico de crecimiento con <strong style="color:#38bdf8;">+40.4%</strong></li>
+            <li>2026: estabilización con <strong style="color:#38bdf8;">119 empresas</strong></li>
+            <li>E-commerce: proyección de <strong style="color:#10b981;">$5,300M</strong> para 2027</li>
+          </ul>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div class="progress-bar">
+              <div class="progress-bar-label">2022</div>
+              <div class="progress-bar-track"><div class="progress-bar-fill" style="width:100%;background:#1A56DB;"></div></div>
+              <div class="progress-bar-pct" style="color:#1A56DB;">+40.4%</div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-bar-label">2023</div>
+              <div class="progress-bar-track"><div class="progress-bar-fill" style="width:79%;background:#0891B2;"></div></div>
+              <div class="progress-bar-pct" style="color:#0891B2;">+31.8%</div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-bar-label">2024</div>
+              <div class="progress-bar-track"><div class="progress-bar-fill" style="width:26%;background:#38BDF8;"></div></div>
+              <div class="progress-bar-pct" style="color:#38BDF8;">+10.3%</div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-bar-label">2025</div>
+              <div class="progress-bar-track"><div class="progress-bar-fill" style="width:60%;background:#10B981;"></div></div>
+              <div class="progress-bar-pct" style="color:#10B981;">+23.9%</div>
+            </div>
+          </div>
+        </div>
+        <div style="height:240px;width:100%;">
+          <canvas id="growth-chart" height="240"></canvas>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S19 · REMESAS Y LA EXENCIÓN DEL 1% -->
+    <section class="bg-glow-blue">
+      <span class="slide-label">Bloque 05 — Guatemala Deep Dive</span>
+      <h2>Remesas &amp; <span class="electric">One Big Beautiful Bill Act</span></h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div>
+          <div class="s-card" style="text-align:center;margin-bottom:12px;">
+            <div class="big-stat">$26.8B</div>
+            <div style="font-size:0.52em;color:#94a3b8;margin-top:4px;">Remesas proyectadas 2026</div>
+            <div class="s-badge s-badge-blue" style="margin-top:8px;">24.3% del PIB Nacional</div>
+          </div>
+          <ul>
+            <li>3 de cada 10 hogares: remesas cubren <strong style="color:#f8fafc;">80%+</strong> de sus gastos</li>
+            <li>65% de guatemaltecos son usuarios de internet</li>
+            <li>82% de la población tiene menos de 44 años</li>
+          </ul>
+        </div>
+        <div>
+          <div class="s-card" style="border-color:rgba(239,68,68,0.3);margin-bottom:10px;">
+            <div class="s-badge s-badge-red" style="margin-bottom:6px;">Desde 01/01/2026</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:1.6em;font-weight:800;color:#ef4444;">1%</div>
+            <div style="font-size:0.52em;color:#94a3b8;">impuesto a remesas en <strong style="color:#f8fafc;">efectivo</strong> desde EE.UU. (Sección 70604)</div>
+          </div>
+          <div class="s-card" style="border-color:rgba(16,185,129,0.4);">
+            <div class="s-badge s-badge-green" style="margin-bottom:6px;">Exención Digital</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:1.6em;font-weight:800;color:#10b981;">0%</div>
+            <div style="font-size:0.52em;color:#94a3b8;">transferencias digitales → <strong style="color:#f8fafc;">ventaja FinTech</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S20 · PROPENSIÓN MARGINAL AL CONSUMO Y LIQUIDEZ LOCAL -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 05 — Guatemala Deep Dive</span>
+      <h2><span class="info-term"
+          data-it-title="Propensión Marginal al Consumo (PMC)"
+          data-it-content="La fracción de cada quetzal <strong>adicional de ingreso</strong> que una persona destina al consumo en lugar del ahorro.<br/><br/>Si PMC = 0.85: de cada Q100 adicionales recibidos, Q85 se consumen y Q15 se ahorran.<br/><br/><strong>Fórmula:</strong><br/>PMC = ΔC / ΔY<br/><br/><strong>Relevancia FinTech en Guatemala:</strong><br/>Si un receptor de remesas ahorra Q38 en comisión al usar Fri en vez de Western Union, esos Q38 adicionales no desaparecen: se inyectan a la economía local (mercados, transporte, educación).<br/><br/>Con PMC = 0.85 y 1M de receptores ahorrando Q38 c/u → Q32.3M adicionales en consumo local por mes → efecto multiplicador en el PIB."
+          data-it-formula="PMC = \\frac{\\Delta C}{\\Delta Y}"
+          data-it-tag="economy" data-it-tag-label="Economía" data-it-tag-color="">Propensión Marginal al Consumo</span>
+        &amp; <span class="electric">Liquidez Local</span></h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div>
+          <div class="formula-box" style="margin-bottom:14px;">PMC = ΔC / ΔY</div>
+          <ul>
+            <li>Ahorrar Q38 en comisión = Q38 adicionales en consumo local</li>
+            <li>Con PMC = 0.85 → <strong style="color:#38bdf8;">Q32.3M adicionales</strong> en la economía local por cada millón de receptores</li>
+            <li>Las FinTech inyectan liquidez sin necesidad de política fiscal</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="s-card" style="border-color:rgba(56,189,248,0.3);">
+            <div style="font-size:0.6em;font-weight:700;color:#38bdf8;margin-bottom:6px;">Fri — Caso Guatemala</div>
+            <div style="font-size:0.58em;color:#94a3b8;line-height:1.5;">Eliminó costo de envío entre usuarios. Monetiza a través de comercios aliados. El receptor recibe el 100% de la remesa.</div>
+          </div>
+          <div class="s-card" style="border-color:rgba(56,189,248,0.3);">
+            <div style="font-size:0.6em;font-weight:700;color:#38bdf8;margin-bottom:6px;">Leapfrogging Digital</div>
+            <div style="font-size:0.58em;color:#94a3b8;line-height:1.5;">Digitalización de remesas mejora la precisión del PIB: datos medibles para el Banguat y la SAT.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S21 · MARCO LEGAL: LEY DE COMPETENCIA Y SANDBOX -->
+    <section class="bg-glow-blue">
+      <span class="slide-label">Bloque 06 — Marco Legal</span>
+      <h2>Marco Legal: <span class="electric">Decreto 7-2026</span> &amp; Sandbox</h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div>
+          <h3 style="color:#38bdf8;margin-bottom:8px;">Leyes Clave</h3>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="s-card-sm">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.5em;color:#7C3AED;margin-bottom:3px;">Decreto 7-2026</div>
+              <div style="font-size:0.58em;color:#cbd5e1;">Ley de Competencia: obliga a los bancos a abrir sus redes a las FinTech (<span class="info-term"
+                  data-it-title="Interoperabilidad Financiera"
+                  data-it-content="Capacidad de diferentes sistemas financieros de <strong>comunicarse y compartir datos entre sí</strong> usando protocolos estandarizados (APIs).<br/><br/>Con el Decreto 7-2026, los bancos guatemaltecos están obligados a:<br/>• Abrir sus redes de pago a las FinTechs licenciadas<br/>• Compartir datos de clientes (con consentimiento) a través de APIs<br/>• No discriminar a FinTechs en el acceso a infraestructura de pagos<br/><br/>Esto elimina una de las barreras de entrada más grandes del sector: antes, una FinTech de pagos necesitaba que el banco quisiera integrarla. Ahora, la integración es un derecho legal."
+                  data-it-tag="legal" data-it-tag-label="Legal" data-it-tag-color="">interoperabilidad</span>).</div>
+            </div>
+            <div class="s-card-sm">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.5em;color:#1A56DB;margin-bottom:3px;">Decreto 19-2002</div>
+              <div style="font-size:0.58em;color:#cbd5e1;">Ley de Bancos: capital mínimo Q175M para intermediación. Si prestas capital propio → no requieres licencia.</div>
+            </div>
+            <div class="s-card-sm">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.5em;color:#ef4444;margin-bottom:3px;">Res. JM-91-2024</div>
+              <div style="font-size:0.58em;color:#cbd5e1;">Plazo 16/02/2026: actualizar ciberseguridad y biometría. <span class="info-term"
+                  data-it-title="KYC — Know Your Customer"
+                  data-it-content="Proceso obligatorio para <strong>verificar la identidad del cliente</strong> antes de prestarle servicios financieros.<br/><br/><strong>Componentes en Guatemala (JM-91-2024):</strong><br/>• Verificación de DPI (Documento Personal de Identificación)<br/>• Prueba de vida (biometría facial o de voz)<br/>• Validación de dirección<br/>• Verificación contra listas OFAC y Personas Expuestas Políticamente (PEPs)<br/><br/><strong>Riesgo legal:</strong> Los errores algorítmicos en el proceso KYC (falsos positivos, datos mal procesados) pueden implicar responsabilidades penales bajo el Decreto 67-2001 (Ley Contra el Lavado de Dinero).<br/><br/>Esto es una barrera técnica significativa: las FinTechs deben implementar KYC robusto desde el primer día."
+                  data-it-tag="legal" data-it-tag-label="Legal" data-it-tag-color="">KYC</span> digital obligatorio.</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 style="color:#38bdf8;margin-bottom:8px;">Mecanismos de Entrada</h3>
+          <div class="s-card" style="margin-bottom:10px;border-color:rgba(16,185,129,0.3);">
+            <div style="font-size:0.6em;font-weight:700;color:#10b981;margin-bottom:6px;">
+              <span class="info-term"
+                data-it-title="Sandbox Regulatorio"
+                data-it-content="Entorno controlado donde startups pueden <strong>operar con usuarios reales bajo supervisión regulatoria</strong> sin cumplir todos los requisitos normales desde el inicio.<br/><br/><strong>Beneficio principal:</strong> Permite operar una FinTech sin el capital mínimo de Q175M para <em>demostrar</em> que el modelo es seguro y viable. Si pasan el período sandbox, se facilita la licencia completa.<br/><br/><strong>Analogía:</strong> Como un período de prueba laboral — el regulador observa antes de dar empleo permanente (licencia completa).<br/><br/><strong>Precedentes:</strong> UK FCA Sandbox (2016), Singapur MAS Sandbox, México (Ley FinTech 2018). Guatemala está en proceso de implementación formal."
+                data-it-tag="legal" data-it-tag-label="Legal" data-it-tag-color="">Sandbox Regulatorio</span>
+            </div>
+            <p style="font-size:0.56em;color:#94a3b8;margin:0;line-height:1.5;">Opera con usuarios reales sin Q175M de capital inicial. Supervisado por el regulador para probar viabilidad del modelo.</p>
+          </div>
+          <div class="s-card-sm">
+            <div style="font-size:0.58em;color:#94a3b8;line-height:1.5;">
+              <strong style="color:#f59e0b;">Arbitraje Regulatorio:</strong> diseñar el modelo bajo licencia comercial (SA) para operar sin regulación bancaria, siempre que no haya intermediación no autorizada.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- S22 · ESTRATEGIA GERENCIAL, ROI Y CUÁNDO NO -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 07 — Estrategia Gerencial</span>
+      <h2>Estrategia de <span class="electric">Adopción FinTech</span></h2>
+      <div class="accent-bar"></div>
+      <div class="two-col">
+        <div>
+          <h3 style="color:#38bdf8;margin-bottom:8px;">Los 3 Pilares</h3>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="s-card-sm">
+              <div style="font-size:0.58em;font-weight:700;color:#38bdf8;margin-bottom:4px;">💰 ROI Financiero</div>
+              <div class="formula-box" style="font-size:0.5em;padding:6px 12px;margin-bottom:4px;">ROI = (B.Neto − C.Inv) / C.Inv × 100</div>
+              <div style="font-size:0.54em;color:#94a3b8;">Ahorro en comisiones + liberación de capital de trabajo</div>
+            </div>
+            <div class="s-card-sm">
+              <div style="font-size:0.58em;font-weight:700;color:#10b981;margin-bottom:4px;">📈 Escalabilidad</div>
+              <div style="font-size:0.54em;color:#94a3b8;">100 → 10,000 transacciones sin aumentar personal administrativo</div>
+            </div>
+            <div class="s-card-sm">
+              <div style="font-size:0.58em;font-weight:700;color:#a78bfa;margin-bottom:4px;">⭐ Customer Experience</div>
+              <div style="font-size:0.54em;color:#94a3b8;">Reducir fricción → mayor fidelidad → menor churn</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 style="color:#ef4444;margin-bottom:8px;">¿Cuándo NO implementar?</h3>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div class="s-card-sm" style="border-color:rgba(239,68,68,0.2);">
+              <div style="font-size:0.56em;color:#fca5a5;font-weight:600;margin-bottom:2px;">📉 Baja Transaccionalidad</div>
+              <div style="font-size:0.52em;color:#94a3b8;">Pocas ventas de montos altos → comisión % más cara que transferencia fija</div>
+            </div>
+            <div class="s-card-sm" style="border-color:rgba(245,158,11,0.2);">
+              <div style="font-size:0.56em;color:#fcd34d;font-weight:600;margin-bottom:2px;">📡 Brecha Digital</div>
+              <div style="font-size:0.52em;color:#94a3b8;">Mercado sin smartphones o señal → adopción forzada genera más fricción</div>
+            </div>
+            <div class="s-card-sm" style="border-color:rgba(245,158,11,0.2);">
+              <div style="font-size:0.56em;color:#fcd34d;font-weight:600;margin-bottom:2px;">⚠️ Riesgo Operativo</div>
+              <div style="font-size:0.52em;color:#94a3b8;">FinTech extranjera sin representación local → problemas con SAT</div>
+            </div>
+            <div class="s-card-sm" style="border-color:rgba(148,163,184,0.2);">
+              <div style="font-size:0.56em;color:#94a3b8;font-weight:600;margin-bottom:2px;">🔄 Proceso Ineficiente</div>
+              <div style="font-size:0.52em;color:#94a3b8;font-style:italic;">"Automatizar un proceso ineficiente solo genera ineficiencias más rápidas."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </div><!-- /slides -->`;
+
+const newContent = before + newSlides + after;
+fs.writeFileSync(filepath, newContent, 'utf-8');
+console.log('Done! File written successfully.');
+console.log('New file size:', newContent.length, 'bytes');
+// Verify the markers
+const verification = fs.readFileSync(filepath, 'utf-8');
+const hasStart = verification.includes('<div class="slides">');
+const hasEnd = verification.includes('</div><!-- /slides -->');
+const hasPlaceholder = verification.includes('PLACEHOLDER_TO_FIND');
+console.log('Has slides start:', hasStart);
+console.log('Has slides end:', hasEnd);
+console.log('Placeholder cleaned:', !hasPlaceholder);
