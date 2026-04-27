@@ -1,28 +1,117 @@
 ---
 ---
-    <!-- S17 · ECOSISTEMA GUATEMALA: 8 SECTORES -->
-    <section>
-      <span class="slide-label">Bloque 05 — Guatemala Deep Dive</span>
-      <h2>Guatemala: <span class="electric">8 sectores</span> FinTech</h2>
+    <!-- S17 · ECOSISTEMA GUATEMALA: 8 SECTORES (GRID INTERACTIVO) -->
+    <section class="bg-navy">
+      <span class="slide-label">Bloque 04 — Guatemala: Ecosistema</span>
+      <h2>Guatemala: <span class="electric">8 sectores</span> FinTech activos</h2>
       <div class="accent-bar"></div>
-      <div class="two-col items-center">
-        <div class="max-w-[280px] mx-auto">
-          <canvas id="sector-chart" width="280" height="280"></canvas>
+      <p class="text-center s-text-4xs muted" style="margin:-6px 0 10px;">
+        119 empresas registradas · <span class="electric font-semibold">Clic en un sector</span> para ver sus empresas
+      </p>
+
+      <div class="grid grid-cols-4 gap-2">
+
+        <!-- Pagos Digitales -->
+        <div class="s-card-sm info-term text-center" style="cursor:pointer;"
+          tabindex="0"
+          data-it-title="💳 Pagos Digitales"
+          data-it-content="<strong>4 empresas activas · 28% del ecosistema</strong><br/><br/>El sector más grande y maduro de FinTech en Guatemala. Impulsa la digitalización de cobros en comercios formales e informales mediante QR y plataformas de pago sin POS físico.<br/><br/><strong>Empresas:</strong><br/>• <em>Fri</em> — cobros QR para comercios y ferias<br/>• <em>Paggo</em> — acepta pagos con tarjeta desde el celular<br/>• <em>QpayPro</em> — pasarela de pagos para e-commerce<br/>• <em>Recurrente</em> — suscripciones y cobros recurrentes<br/><br/><strong>Por qué lidera:</strong> POS bancario ≈ Q800/mes · QR FinTech ≈ Q0 → elimina la barrera de entrada para pequeños comerciantes."
+          data-it-tag="tech" data-it-tag-label="Guatemala" data-it-tag-color="">
+          <div style="font-size:1.5em;line-height:1.2;">💳</div>
+          <div class="s-text-3xs electric font-bold mt-1">Pagos Digitales</div>
+          <div class="font-montserrat font-extrabold" style="font-size:1.1em;color:#38bdf8;line-height:1.3;">28%</div>
+          <div class="s-text-6xs muted">4 empresas</div>
         </div>
-        <div class="sector-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#1A56DB;"></div><div><span style="font-weight:700;color:#1A56DB;">38.5%</span> <span style="color:#94a3b8;font-size:0.78em;">Pagos Digitales</span></div></div>
-          <div class="legend-item"><div class="legend-dot" style="background:#0891B2;"></div><div><span style="font-weight:700;color:#0891B2;">15.9%</span> <span style="color:#94a3b8;font-size:0.78em;">Tech para Inst. Financieras</span></div></div>
-          <div class="legend-item"><div class="legend-dot" style="background:#38BDF8;"></div><div><span style="font-weight:700;color:#38BDF8;">15.9%</span> <span style="color:#94a3b8;font-size:0.78em;">Crédito Digital</span></div></div>
-          <div class="legend-item"><div class="legend-dot" style="background:#10B981;"></div><div><span style="font-weight:700;color:#10B981;">9.2%</span> <span style="color:#94a3b8;font-size:0.78em;">Gestión de Finanzas</span></div></div>
-          <div class="legend-item"><div class="legend-dot" style="background:#F59E0B;"></div><div><span style="font-weight:700;color:#F59E0B;">6.7%</span> <span style="color:#94a3b8;font-size:0.78em;">Criptoactivos</span></div></div>
-          <div class="legend-item"><div class="legend-dot" style="background:#8B5CF6;"></div><div><span style="font-weight:700;color:#8B5CF6;">5.0%</span> <span style="color:#94a3b8;font-size:0.78em;">Insurtech</span></div></div>
-          <div class="legend-item"><div class="legend-dot" style="background:#EC4899;"></div><div><span style="font-weight:700;color:#EC4899;">3.3%</span> <span style="color:#94a3b8;font-size:0.78em;">Neobanca</span></div></div>
-          <div class="legend-item"><div class="legend-dot" style="background:#6B7280;"></div><div><span style="font-weight:700;color:#6B7280;">1.7%</span> <span style="color:#94a3b8;font-size:0.78em;">Activos Fin. y Mercados</span></div></div>
+
+        <!-- Crédito Digital -->
+        <div class="s-card-sm info-term text-center" style="cursor:pointer;"
+          tabindex="0"
+          data-it-title="💰 Crédito Digital"
+          data-it-content="<strong>4 empresas activas · 22% del ecosistema</strong><br/><br/>Plataformas que otorgan crédito sin la banca tradicional, usando Alternative Scoring para evaluar riesgo sin garantías hipotecarias.<br/><br/><strong>Empresas:</strong><br/>• <em>Abaco</em> — crédito para vendedores de mercado (flujo de caja digital)<br/>• <em>Tala</em> — microcrédito evaluado por comportamiento del smartphone<br/>• <em>Vana</em> — crédito P2P entre personas<br/>• <em>KrediYA</em> — BNPL (Buy Now Pay Later) para e-commerce<br/><br/><strong>Clave:</strong> 72% de PYMEs guatemaltecas sin acceso a crédito formal → enorme potencial de crecimiento."
+          data-it-tag="finance" data-it-tag-label="Guatemala" data-it-tag-color="">
+          <div style="font-size:1.5em;line-height:1.2;">💰</div>
+          <div class="s-text-3xs electric font-bold mt-1">Crédito Digital</div>
+          <div class="font-montserrat font-extrabold" style="font-size:1.1em;color:#38bdf8;line-height:1.3;">22%</div>
+          <div class="s-text-6xs muted">4 empresas</div>
         </div>
+
+        <!-- Tech Financieras -->
+        <div class="s-card-sm info-term text-center" style="cursor:pointer;"
+          tabindex="0"
+          data-it-title="⚙️ Tech para Instituciones Financieras"
+          data-it-content="<strong>3 empresas activas · 14% del ecosistema</strong><br/><br/>Proveedores de infraestructura tecnológica que potencian a bancos y cooperativas en lugar de competir con ellos. Modelo B2B: sus clientes son las instituciones, no el consumidor final.<br/><br/><strong>Empresas:</strong><br/>• <em>Bowpi</em> — software core bancario para cooperativas<br/>• <em>Mambu</em> — plataforma cloud de gestión bancaria (SaaS)<br/>• <em>Sifco</em> — soluciones de compliance y KYC digital para bancos<br/><br/><strong>Oportunidad:</strong> El Decreto 7-2026 obliga a los bancos a abrir sus APIs → aumenta la demanda de integradores técnicos."
+          data-it-tag="tech" data-it-tag-label="Guatemala" data-it-tag-color="">
+          <div style="font-size:1.5em;line-height:1.2;">⚙️</div>
+          <div class="s-text-3xs electric font-bold mt-1">Tech Financieras</div>
+          <div class="font-montserrat font-extrabold" style="font-size:1.1em;color:#38bdf8;line-height:1.3;">14%</div>
+          <div class="s-text-6xs muted">3 empresas</div>
+        </div>
+
+        <!-- Neobanca -->
+        <div class="s-card-sm info-term text-center" style="cursor:pointer;"
+          tabindex="0"
+          data-it-title="🏦 Neobanca"
+          data-it-content="<strong>4 empresas activas · 11% del ecosistema</strong><br/><br/>Bancos 100% digitales sin sucursales físicas que compiten con la banca tradicional en cuentas, tarjetas y pagos. Apertura de cuenta en &lt;5 minutos con DPI y selfie.<br/><br/><strong>Empresas:</strong><br/>• <em>Nexa</em> — neobanco guatemalteco, cuenta digital con tarjeta física<br/>• <em>Nequi</em> — billetera digital de Bancolombia expandida a GT<br/>• <em>Zigi</em> — cuenta digital para millennials y Gen Z<br/>• <em>Multimoney</em> — servicios financieros digitales para migrantes<br/><br/><strong>Ventaja:</strong> Sin infraestructura física → menores costos → comisiones 60% menores que la banca tradicional."
+          data-it-tag="finance" data-it-tag-label="Guatemala" data-it-tag-color="">
+          <div style="font-size:1.5em;line-height:1.2;">🏦</div>
+          <div class="s-text-3xs electric font-bold mt-1">Neobanca</div>
+          <div class="font-montserrat font-extrabold" style="font-size:1.1em;color:#38bdf8;line-height:1.3;">11%</div>
+          <div class="s-text-6xs muted">4 empresas</div>
+        </div>
+
+        <!-- Gestión Financiera -->
+        <div class="s-card-sm info-term text-center" style="cursor:pointer;"
+          tabindex="0"
+          data-it-title="📊 Gestión Financiera Personal y Empresarial"
+          data-it-content="<strong>3 empresas activas · 9% del ecosistema</strong><br/><br/>Plataformas de control de finanzas, contabilidad automatizada y cumplimiento tributario digital.<br/><br/><strong>Empresas:</strong><br/>• <em>Finny</em> — gestión de finanzas personales y presupuesto familiar<br/>• <em>Tributax</em> — declaraciones de IVA e ISR automatizadas ante SAT<br/>• <em>Owwny</em> — contabilidad simplificada para PYMEs y freelancers<br/><br/><strong>Driver de crecimiento:</strong> La obligatoriedad de FEL (Factura Electrónica en Línea) ante SAT desde 2023 convirtió la gestión tributaria digital de opcional a obligatoria para todo negocio formal."
+          data-it-tag="tech" data-it-tag-label="Guatemala" data-it-tag-color="">
+          <div style="font-size:1.5em;line-height:1.2;">📊</div>
+          <div class="s-text-3xs electric font-bold mt-1">Gestión Financiera</div>
+          <div class="font-montserrat font-extrabold" style="font-size:1.1em;color:#38bdf8;line-height:1.3;">9%</div>
+          <div class="s-text-6xs muted">3 empresas</div>
+        </div>
+
+        <!-- Criptoactivos -->
+        <div class="s-card-sm info-term text-center" style="cursor:pointer;"
+          tabindex="0"
+          data-it-title="₿ Criptoactivos"
+          data-it-content="<strong>4 empresas activas · 8% del ecosistema</strong><br/><br/>Exchanges y plataformas de inversión en criptomonedas operando en Guatemala.<br/><br/><strong>Empresas:</strong><br/>• <em>Inbestgo</em> — inversión en criptos con interfaz en español<br/>• <em>Binance</em> — exchange global con fuerte presencia local<br/>• <em>Coincaex</em> — exchange guatemalteco con oficinas físicas<br/>• <em>Lulubit</em> — compra/venta de Bitcoin con efectivo en GT<br/><br/><strong>Contexto legal:</strong> Guatemala no reconoce las criptomonedas como moneda de curso legal. Operan bajo regulación de valores mobiliarios. Zona gris legal hasta nueva legislación (contraste con El Salvador que adoptó BTC como moneda oficial)."
+          data-it-tag="legal" data-it-tag-label="Guatemala" data-it-tag-color="">
+          <div style="font-size:1.5em;line-height:1.2;">₿</div>
+          <div class="s-text-3xs electric font-bold mt-1">Criptoactivos</div>
+          <div class="font-montserrat font-extrabold" style="font-size:1.1em;color:#38bdf8;line-height:1.3;">8%</div>
+          <div class="s-text-6xs muted">4 empresas</div>
+        </div>
+
+        <!-- Insurtech -->
+        <div class="s-card-sm info-term text-center" style="cursor:pointer;"
+          tabindex="0"
+          data-it-title="🛡️ Insurtech"
+          data-it-content="<strong>3 empresas activas · 5% del ecosistema</strong><br/><br/>Seguros digitales que eliminan la intermediación del agente tradicional. Contratación desde el celular en minutos.<br/><br/><strong>Empresas:</strong><br/>• <em>Sostengo</em> — microseguros para agricultores (cobertura por eventos climáticos)<br/>• <em>Osigu</em> — seguro de salud digital con telemedicina incluida<br/>• <em>Quilo</em> — seguros de vida y accidentes contratados por app<br/><br/><strong>Oportunidad masiva:</strong> Penetración de seguros en Guatemala: 1.4% del PIB vs. 7% en mercados desarrollados. El sector agrícola y rural prácticamente no tiene cobertura formal."
+          data-it-tag="finance" data-it-tag-label="Guatemala" data-it-tag-color="">
+          <div style="font-size:1.5em;line-height:1.2;">🛡️</div>
+          <div class="s-text-3xs electric font-bold mt-1">Insurtech</div>
+          <div class="font-montserrat font-extrabold" style="font-size:1.1em;color:#38bdf8;line-height:1.3;">5%</div>
+          <div class="s-text-6xs muted">3 empresas</div>
+        </div>
+
+        <!-- Activos y Mercados -->
+        <div class="s-card-sm info-term text-center" style="cursor:pointer;"
+          tabindex="0"
+          data-it-title="📈 Activos Financieros y Mercados de Capitales"
+          data-it-content="<strong>2 empresas activas · 3% del ecosistema</strong><br/><br/>Plataformas de inversión en mercados de capitales locales e instrumentos financieros regulados. Democratizan la inversión bursátil con montos mínimos &lt;Q500.<br/><br/><strong>Empresas:</strong><br/>• <em>Guatexchange</em> — bolsa de valores digital para instrumentos guatemaltecos<br/>• <em>Treten</em> — plataforma de inversión en activos reales tokenizados<br/><br/><strong>Contexto:</strong> La BVN (Bolsa de Valores Nacional) mueve principalmente deuda pública. Antes de estas FinTechs, una cuenta de corretaje requería depósitos mínimos de Q50,000+. Ahora accesible desde Q500."
+          data-it-tag="finance" data-it-tag-label="Guatemala" data-it-tag-color="">
+          <div style="font-size:1.5em;line-height:1.2;">📈</div>
+          <div class="s-text-3xs electric font-bold mt-1">Activos y Mercados</div>
+          <div class="font-montserrat font-extrabold" style="font-size:1.1em;color:#38bdf8;line-height:1.3;">3%</div>
+          <div class="s-text-6xs muted">2 empresas</div>
+        </div>
+
       </div>
-      <div class="s-card-sm mt-2.5">
-        <div class="s-text-2xs muted">
-          Fuente: Asociación FinTech de Guatemala · Corte 2025–2026 · Total: <strong class="white-txt">119 empresas activas</strong>
+
+      <div class="s-card-sm mt-2.5 text-center">
+        <div class="s-text-3xs muted">
+          Fuente: ASFINTECH Guatemala · 2026 · Total: <strong class="white-txt">119 empresas activas</strong>
         </div>
       </div>
     </section>

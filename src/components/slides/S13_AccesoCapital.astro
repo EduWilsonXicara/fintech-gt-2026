@@ -1,34 +1,91 @@
 ---
 ---
-    <!-- S13 · ACCESO A CAPITAL: EL CAMBIO POST-PANDEMIA -->
+    <!-- S13 · ACCESO A CAPITAL + ALTERNATIVE SCORING (fusión S13+S14) -->
     <section class="bg-glow-blue">
-      <span class="slide-label">Bloque 04 — Acceso a Capital</span>
-      <h2>Acceso a capital: <span class="electric">El cambio post-pandemia</span></h2>
+      <span class="slide-label">Bloque 06 — Acceso a Capital</span>
+      <h2>Acceso a capital: <span class="electric">Alternative Scoring</span></h2>
       <div class="accent-bar"></div>
       <div class="two-col">
-        <div>
-          <div class="s-card s-border-red mb-3">
-            <div class="s-text-3xs muted mb-1">Pre-2020 — Banca tradicional</div>
-            <div class="big-stat-sm" style="color:#ef4444;">85%</div>
-            <div class="s-text-4xs muted">de los créditos iban a <strong class="white-txt">grandes empresas</strong></div>
+
+        <!-- Col izq: El problema + fuentes de datos -->
+        <div class="flex flex-col gap-2">
+          <div class="s-card s-border-red">
+            <div class="s-text-3xs muted mb-1">El problema — Banca tradicional</div>
+            <ul class="m-0">
+              <li class="s-text-xs"><strong class="white-txt">85%</strong> del crédito a grandes empresas (pre-2020)</li>
+              <li class="s-text-xs">PYMEs excluidas por falta de garantías e historial</li>
+              <li class="s-text-xs"><span class="info-term"
+                  data-it-title="Asimetría de Información"
+                  data-it-content="El prestamista no puede observar la capacidad de pago real del deudor → impone condiciones uniformemente estrictas para todos → excluye a buenos pagadores sin historial formal.<br/><br/><strong>Consecuencias:</strong><br/>• Selección Adversa: solo aceptan quienes no tienen alternativa (mayor riesgo)<br/>• Riesgo Moral: el deudor puede comportarse más arriesgado tras recibir el crédito<br/><br/><strong>Solución FinTech:</strong> datos alternativos reducen la asimetría → permiten identificar buenos pagadores sin historial bancario."
+                  data-it-tag="economy" data-it-tag-label="Economía" data-it-tag-color="">Asimetría de información</span> → tasas infladas para todos</li>
+            </ul>
           </div>
-          <ul>
-            <li>PYMES y personas naturales: excluidas por falta de garantías</li>
-            <li>Proceso: formularios + hipoteca + estados financieros auditados</li>
-            <li>Tiempo: 3 a 8 semanas de espera</li>
-          </ul>
-        </div>
-        <div>
-          <div class="s-card s-border-green mb-3">
-            <div class="s-text-3xs muted mb-1">Post-pandemia → 2026 — FinTech</div>
-            <div class="big-stat-sm" style="color:#10b981;">2014-2016</div>
-            <div class="s-text-4xs muted">Desconfianza inicial → superada por <strong class="white-txt">necesidad pandémica</strong></div>
+          <div class="s-card-sm">
+            <div class="s-text-2xs electric font-bold mb-1.5">Fuentes de datos alternativos:</div>
+            <ul class="m-0">
+              <li class="s-text-3xs">📱 Comportamiento digital y de apps</li>
+              <li class="s-text-3xs">💰 Flujo de caja en tiempo real</li>
+              <li class="s-text-3xs">🧾 Facturación electrónica FEL (SAT)</li>
+              <li class="s-text-3xs">🔄 Historial de pago de servicios públicos</li>
+              <li class="s-text-3xs">📊 Movimientos en billeteras digitales</li>
+            </ul>
           </div>
-          <ul>
-            <li>Pandemia = alfabetización digital acelerada</li>
-            <li>Las PYMES necesitaban liquidez <em class="electric">inmediatamente</em></li>
-            <li>FinTech respondió con crédito en 24-48 horas</li>
-          </ul>
         </div>
+
+        <!-- Col der: Impacto y stats -->
+        <div class="flex flex-col gap-2.5">
+          <div class="s-card text-center s-border-cyan-lg">
+            <div class="big-stat-sm">35.5%</div>
+            <div class="s-text-4xs muted">de clientes FinTech en GT eran previamente <strong class="white-txt">no bancarizados</strong></div>
+          </div>
+          <div class="s-card-sm s-border-green">
+            <div class="s-text-3xs muted mb-0.5">Post-pandemia → FinTech</div>
+            <div class="s-text-xs electric font-semibold">Crédito digital en 24–48 horas</div>
+            <div class="s-text-3xs muted mt-0.5">Sin garantías · Solo flujo de caja + datos alternativos</div>
+          </div>
+          <div class="s-card-sm">
+            <div class="s-text-2xs muted leading-[1.5]">
+              Prima de <strong class="white-txt">14–16 bps</strong> adicionales sobre tasa base = precio del acceso sin garantía hipotecaria
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Enlace a tabla comparativa -->
+      <div class="text-center mt-2">
+        <span class="info-term s-text-4xs"
+          data-it-title="Comparativa SME Lending: Tasas y Condiciones"
+          data-it-content="<table style='width:100%;border-collapse:collapse;margin-bottom:8px;'>
+            <thead>
+              <tr style='border-bottom:1px solid rgba(255,255,255,0.1);'>
+                <th style='text-align:left;padding:5px 8px;color:#38bdf8;font-size:0.85em;font-weight:700;'>Entidad</th>
+                <th style='padding:5px 8px;color:#38bdf8;font-size:0.85em;font-weight:700;'>Tasa Anual</th>
+                <th style='padding:5px 8px;color:#38bdf8;font-size:0.85em;font-weight:700;'>Requisitos</th>
+                <th style='padding:5px 8px;color:#38bdf8;font-size:0.85em;font-weight:700;'>Tiempo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style='border-bottom:1px solid rgba(255,255,255,0.05);'>
+                <td style='padding:5px 8px;color:#f8fafc;font-weight:600;font-size:0.85em;'>Banca Tradicional</td>
+                <td style='padding:5px 8px;color:#f59e0b;font-size:0.85em;'>11% – 15%</td>
+                <td style='padding:5px 8px;color:#94a3b8;font-size:0.8em;'>Garantía hipotecaria · Estados auditados · 2+ años op.</td>
+                <td style='padding:5px 8px;color:#ef4444;font-size:0.85em;'>3–8 semanas</td>
+              </tr>
+              <tr>
+                <td style='padding:5px 8px;color:#38bdf8;font-weight:600;font-size:0.85em;'>FinTech / Neobancos</td>
+                <td style='padding:5px 8px;color:#f59e0b;font-size:0.85em;'>18% – 24%</td>
+                <td style='padding:5px 8px;color:#94a3b8;font-size:0.8em;'>FEL (SAT) · Alternative Scoring · Flujo de caja</td>
+                <td style='padding:5px 8px;color:#10b981;font-size:0.85em;'>24–48 horas</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style='padding:8px 12px;background:rgba(56,189,248,0.07);border-radius:8px;font-size:0.82em;color:#94a3b8;'>
+            <strong style='color:#38bdf8;'>¿Por qué la tasa FinTech es mayor?</strong> Sin garantía hipotecaria → mayor riesgo percibido → prima de 14–16 bps.<br/>
+            <strong style='color:#10b981;'>La ventaja real:</strong> liquidez inmediata elimina el costo de oportunidad del capital inmovilizado.
+          </div>"
+          data-it-tag="finance" data-it-tag-label="Comparativa" data-it-tag-color="">
+          📋 Ver comparativa de tasas Banca vs. FinTech →
+        </span>
       </div>
     </section>
