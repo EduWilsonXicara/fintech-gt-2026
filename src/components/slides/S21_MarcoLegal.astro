@@ -8,21 +8,21 @@
       <div class="two-col">
         <div>
           <h3 style="color:#38bdf8;margin-bottom:8px;">Leyes Clave</h3>
-          <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="flex flex-col gap-2">
             <div class="s-card-sm">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.5em;color:#7C3AED;margin-bottom:3px;">Decreto 7-2026</div>
-              <div style="font-size:0.58em;color:#cbd5e1;">Ley de Competencia: obliga a los bancos a abrir sus redes a las FinTech (<span class="info-term"
+              <div class="font-mono s-text-5xs text-violet-600 mb-[3px]">Decreto 7-2026</div>
+              <div class="s-text-2xs">Ley de Competencia: obliga a los bancos a abrir sus redes a las FinTech (<span class="info-term"
                   data-it-title="Interoperabilidad Financiera"
                   data-it-content="Capacidad de diferentes sistemas financieros de <strong>comunicarse y compartir datos entre sí</strong> usando protocolos estandarizados (APIs).<br/><br/>Con el Decreto 7-2026, los bancos guatemaltecos están obligados a:<br/>• Abrir sus redes de pago a las FinTechs licenciadas<br/>• Compartir datos de clientes (con consentimiento) a través de APIs<br/>• No discriminar a FinTechs en el acceso a infraestructura de pagos<br/><br/>Esto elimina una de las barreras de entrada más grandes del sector: antes, una FinTech de pagos necesitaba que el banco quisiera integrarla. Ahora, la integración es un derecho legal."
                   data-it-tag="legal" data-it-tag-label="Legal" data-it-tag-color="">interoperabilidad</span>)</div>
             </div>
             <div class="s-card-sm">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.5em;color:#1A56DB;margin-bottom:3px;">Decreto 19-2002</div>
-              <div style="font-size:0.58em;color:#cbd5e1;">Ley de Bancos: capital mínimo Q175M para intermediación. Si prestas capital propio → no requieres licencia</div>
+              <div class="font-mono s-text-5xs text-[#1A56DB] mb-[3px]">Decreto 19-2002</div>
+              <div class="s-text-2xs">Ley de Bancos: capital mínimo Q175M para intermediación. Si prestas capital propio → no requieres licencia</div>
             </div>
             <div class="s-card-sm">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.5em;color:#ef4444;margin-bottom:3px;">Res. JM-91-2024</div>
-              <div style="font-size:0.58em;color:#cbd5e1;">Plazo 16/02/2026: actualizar ciberseguridad y biometría <span class="info-term"
+              <div class="font-mono s-text-5xs red-txt mb-[3px]">Res. JM-91-2024</div>
+              <div class="s-text-2xs">Plazo 16/02/2026: actualizar ciberseguridad y biometría <span class="info-term"
                   data-it-title="KYC — Know Your Customer"
                   data-it-content="Proceso obligatorio para <strong>verificar la identidad del cliente</strong> antes de prestarle servicios financieros.<br/><br/><strong>Componentes en Guatemala (JM-91-2024):</strong><br/>• Verificación de DPI (Documento Personal de Identificación)<br/>• Prueba de vida (biometría facial o de voz)<br/>• Validación de dirección<br/>• Verificación contra listas OFAC y Personas Expuestas Políticamente (PEPs)<br/><br/><strong>Riesgo legal:</strong> Los errores algorítmicos en el proceso KYC (falsos positivos, datos mal procesados) pueden implicar responsabilidades penales bajo el Decreto 67-2001 (Ley Contra el Lavado de Dinero).<br/><br/>Esto es una barrera técnica significativa: las FinTechs deben implementar KYC robusto desde el primer día."
                   data-it-tag="legal" data-it-tag-label="Legal" data-it-tag-color="">KYC</span> digital obligatorio</div>
@@ -31,18 +31,18 @@
         </div>
         <div>
           <h3 style="color:#38bdf8;margin-bottom:8px;">Mecanismos de Entrada</h3>
-          <div class="s-card" style="margin-bottom:10px;border-color:rgba(16,185,129,0.3);">
-            <div style="font-size:0.6em;font-weight:700;color:#10b981;margin-bottom:6px;">
+          <div class="s-card mb-2.5 s-border-green-sm">
+            <div class="s-text-xs green-txt font-bold mb-1.5">
               <span class="info-term"
                 data-it-title="Sandbox Regulatorio"
                 data-it-content="Entorno controlado donde startups pueden <strong>operar con usuarios reales bajo supervisión regulatoria</strong> sin cumplir todos los requisitos normales desde el inicio.<br/><br/><strong>Beneficio principal:</strong> Permite operar una FinTech sin el capital mínimo de Q175M para <em>demostrar</em> que el modelo es seguro y viable. Si pasan el período sandbox, se facilita la licencia completa.<br/><br/><strong>Analogía:</strong> Como un período de prueba laboral — el regulador observa antes de dar empleo permanente (licencia completa).<br/><br/><strong>Precedentes:</strong> UK FCA Sandbox (2016), Singapur MAS Sandbox, México (Ley FinTech 2018). Guatemala está en proceso de implementación formal."
                 data-it-tag="legal" data-it-tag-label="Legal" data-it-tag-color="">Sandbox regulatorio</span>
             </div>
-            <p style="font-size:0.56em;color:#94a3b8;margin:0;line-height:1.5;">Opera con usuarios reales sin Q175M de capital inicial. Supervisado por el regulador para probar viabilidad del modelo</p>
+            <p class="s-text-3xs muted m-0 leading-[1.5]">Opera con usuarios reales sin Q175M de capital inicial. Supervisado por el regulador para probar viabilidad del modelo</p>
           </div>
           <div class="s-card-sm">
-            <div style="font-size:0.58em;color:#94a3b8;line-height:1.5;">
-              <strong style="color:#f59e0b;">Arbitraje regulatorio:</strong> diseñar el modelo bajo licencia comercial (SA) para operar sin regulación bancaria, siempre que no haya intermediación no autorizada
+            <div class="s-text-2xs muted leading-[1.5]">
+              <strong class="amber-txt">Arbitraje regulatorio:</strong> diseñar el modelo bajo licencia comercial (SA) para operar sin regulación bancaria, siempre que no haya intermediación no autorizada
             </div>
           </div>
         </div>
