@@ -26,6 +26,7 @@ import S19 from '../components/slides/S19_Remesas.astro';
 import S20 from '../components/slides/S20_PMC.astro';
 import S21 from '../components/slides/S21_MarcoLegal.astro';
 import S22 from '../components/slides/S22_Estrategia.astro';
+import S23 from '../components/slides/S23_Gracias.astro';
 
 // Normalizar base URL — Astro v4 puede no incluir trailing slash
 const rawBase = import.meta.env.BASE_URL;
@@ -360,6 +361,42 @@ const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
       backdrop-filter: blur(8px);
     }
     #back-home:hover { color: #38bdf8; border-color: rgba(56,189,248,0.3); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       UTILIDADES — reemplazan atributos style="" inline en slides
+       Estas clases complementan las de Tailwind para casos donde
+       las unidades em son imprescindibles (escala con Reveal.js).
+    ═══════════════════════════════════════════════════════════════ */
+
+    /* ── Tipografía: tamaños en em (Tailwind usa rem/px, no escala igual) ── */
+    .s-text-xl   { font-size: 1.6em; }
+    .s-text-lg   { font-size: 1.3em; }
+    .s-text-sm   { font-size: 0.65em; }
+    .s-text-xs   { font-size: 0.6em; }
+    .s-text-2xs  { font-size: 0.58em; }
+    .s-text-3xs  { font-size: 0.55em; }
+    .s-text-4xs  { font-size: 0.52em; }
+    .s-text-5xs  { font-size: 0.5em; }
+    .s-text-6xs  { font-size: 0.48em; }
+    .s-text-7xs  { font-size: 0.45em; }
+
+    /* ── Colores adicionales (complementan .electric .muted .red-txt etc.) ── */
+    .purple-txt  { color: #a78bfa; }
+    .pink-txt    { color: #fca5a5; }
+    .yellow-txt  { color: #fcd34d; }
+
+    /* ── Variantes de borde para .s-card y .s-card-sm ── */
+    /* (rgba con transparencia no es expresable en Tailwind sin config extra) */
+    .s-border-cyan    { border-color: rgba(56, 189, 248, 0.3);  }
+    .s-border-cyan-sm { border-color: rgba(56, 189, 248, 0.2);  }
+    .s-border-cyan-lg { border-color: rgba(56, 189, 248, 0.4);  }
+    .s-border-red     { border-color: rgba(239, 68,  68,  0.3); }
+    .s-border-red-sm  { border-color: rgba(239, 68,  68,  0.2); }
+    .s-border-green   { border-color: rgba(16,  185, 129, 0.4); }
+    .s-border-green-sm{ border-color: rgba(16,  185, 129, 0.3); }
+    .s-border-amber   { border-color: rgba(245, 158, 11,  0.3); }
+    .s-border-amber-sm{ border-color: rgba(245, 158, 11,  0.2); }
+    .s-border-gray    { border-color: rgba(148, 163, 184, 0.2); }
   </style>
 </head>
 
@@ -396,6 +433,7 @@ const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
     <S20 />
     <S21 />
     <S22 />
+    <S23 />
 
   </div><!-- /slides -->
   </div><!-- /reveal -->
